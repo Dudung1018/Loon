@@ -32,8 +32,8 @@ if (url.indexOf('/user/userInfo') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(decryptAES_CBC(data["data"]))
     console.log(json)
-    json.data.user.username = '小白解锁'
-    json.data.user.temp_vip = 9
+    json.data.username = '小白解锁'
+    json.data.temp_vip = 9
     json.data.vip_level = 9
     json.data.is_virtual = 'yes'
     json.data.free_view_cnt = 9999
