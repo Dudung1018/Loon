@@ -30,8 +30,8 @@ const CryptoJS = createCryptoJS();
 
 if (url.indexOf('/user/userInfo') !== -1){
     let data = JSON.parse(body)
-    console.log(data)
     let json = JSON.parse(decryptAES_CBC(data["data"]))
+    console.log(json)
     json.data.user.username = '小白解锁'
     json.data.user.temp_vip = 9
     json.data.vip_level = 9
