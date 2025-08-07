@@ -25,6 +25,8 @@ let $ = new Env('91')
 
 let body = $response.body
 let url = $request.url
+
+const sign = new URLSearchParams($request.body).get('sign')
 const CryptoJS = createCryptoJS();
 
 
@@ -42,8 +44,7 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.vip_str = '永久会员'
     json.isVip = true
     data["data"] = encryptAES_CBC(JSON.stringify(json))
-    console.log($request)
-    data["sign"] = new URLSearchParams($request.body).get('sign')
+    data["sign"] = sign
     $.done({body :JSON.stringify(data)})
 }
 
