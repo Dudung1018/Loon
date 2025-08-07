@@ -38,8 +38,8 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.free_view_cnt = 9999
     json.data.vip_str = '永久会员'
     json.isVip = true
+    console.log(encryptAES_CBC(JSON.stringify(json)))
     data["data"] = encryptAES_CBC(JSON.stringify(json))
-    console.log(JSON.stringify(data))
     $.done({body :JSON.stringify(data)})
 }
 
