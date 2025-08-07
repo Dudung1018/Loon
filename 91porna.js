@@ -47,7 +47,7 @@ if (url.indexOf('/user/userInfo') !== -1){
 
 function decryptAES_CBC(data) {
     const keyHex = "2acf7e91e9864673";
-    const ivHex = "1c29882d3ddcfcd6";
+    const ivHex = "1c29882d3ddfcfd6";
     const keyWordArray = CryptoJS.enc.Utf8.parse(keyHex);
     const ivWordArray = CryptoJS.enc.Utf8.parse(ivHex);
 
@@ -63,7 +63,7 @@ function encryptAES_CBC(data) {
     const jsonString = typeof data === 'object' ? JSON.stringify(data) : data;
 
     const keyHex = "2acf7e91e9864673";
-    const ivHex = "1c29882d3ddcfcd6";
+    const ivHex = "1c29882d3ddfcfd6";
     const keyWordArray = CryptoJS.enc.Utf8.parse(keyHex);
     const ivWordArray = CryptoJS.enc.Utf8.parse(ivHex);
     // 使用AES-CBC模式加密数据
