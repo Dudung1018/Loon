@@ -31,7 +31,6 @@ const CryptoJS = createCryptoJS();
 if (url.indexOf('/user/userInfo') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(decryptAES_CBC(data["data"]))
-    console.log(json)
     json.data.username = '小白解锁'
     json.data.temp_vip = 9
     json.data.vip_level = 9
@@ -40,6 +39,7 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.vip_str = '永久会员'
     json.isVip = true
     data["data"] = encryptAES_CBC(JSON.stringify(json))
+    console.log(JSON.stringify(data))
     $.done({body :JSON.stringify(data)})
 }
 
