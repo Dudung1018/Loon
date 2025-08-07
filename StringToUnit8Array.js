@@ -1,8 +1,8 @@
 async function getFinalKey() {
     const suffix = "5589d41f92a597d016b037ac37db243d";
-    const combined = 'client=pwa&data=nMBxnto3ixuS4qY4DuP+DPj/M3ZVqkpoXgZU/OLbPWPtRs7Ei60Sd2kOQhtSnVpq+pm1tAlQsFFRttn9dk9+P2/NSVsn8Nf/c7g84f1+ECfv0u9rZYnuzGCBeuo0GpKKW5m4kqcqkca5+lK+lERHi6hMz2FKdxPM9uskS1f66Dyv+J6JTpYyz1UFT6OQMKbMD1ya+VYzEdCygTfnOzCZUQ==&timestamp=1754441161' + suffix;
-
     const encoder = new TextEncoder();
+
+    const combined = 'client=pwa&data=yL0eQkVKbEJ0SzT833Merw3iuRTW4jIRpsz8LOnjBToNEC4y2zZvjovANgnrqcpJWb2gliXOUcW0sARg0lP2Q8ETaHBoH/fUiJoZs7JzQwhMBWOF1v fDO8It5rY0XDRtgT6FriAq8es86vPxbdsejqBYEnf/lIn DMQ2x38fcMgEuDvKmyN6w10nzhqXyVuxAWxy8soTylNReJLBDASiQ==&timestamp=1754556722'+ suffix;
     const data = encoder.encode(combined);
 
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);

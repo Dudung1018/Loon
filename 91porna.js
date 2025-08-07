@@ -32,6 +32,9 @@ if (url.indexOf('/user/userInfo') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(decryptAES_CBC(data["data"]))
     json.data.username = '小白解锁'
+    json.data.is_login = 1
+    json.data.validate = 1
+    json.data.secrets_privilege = true
     json.data.temp_vip = 9
     json.data.vip_level = 9
     json.data.is_virtual = 'yes'
@@ -39,6 +42,7 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.vip_str = '永久会员'
     json.isVip = true
     data["data"] = encryptAES_CBC(JSON.stringify(json))
+    data["sign"] = $request.body.sign
     $.done({body :JSON.stringify(data)})
 }
 
