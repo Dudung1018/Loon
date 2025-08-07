@@ -38,7 +38,6 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.free_view_cnt = 9999
     json.data.vip_str = '永久会员'
     json.isVip = true
-    console.log(encryptAES_CBC(JSON.stringify(json)))
     data["data"] = encryptAES_CBC(JSON.stringify(json))
     $.done({body :JSON.stringify(data)})
 }
@@ -60,6 +59,7 @@ function decryptAES_CBC(data) {
 }
 function encryptAES_CBC(data) {
     // 将数据转换为JSON字符串（如果是对象）
+    console.log(data)
     const jsonString = typeof data === 'object' ? JSON.stringify(data) : data;
 
     const keyHex = "2acf7e91e9864673";
