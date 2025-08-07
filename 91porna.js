@@ -42,8 +42,6 @@ if (url.indexOf('/user/userInfo') !== -1){
     $.done({body :JSON.stringify(data)})
 }
 
-
-
 function decryptAES_CBC(data) {
     const keyHex = "2acf7e91e9864673";
     const ivHex = "1c29882d3ddfcfd6";
@@ -57,22 +55,22 @@ function decryptAES_CBC(data) {
     });
     return decrypted.toString(CryptoJS.enc.Utf8)
 }
+
 function encryptAES_CBC(data) {
     // 将数据转换为JSON字符串（如果是对象）
-    console.log(data)
     const jsonString = typeof data === 'object' ? JSON.stringify(data) : data;
-
+    const plaintextWA = CryptoJS.enc.Utf8.parse(jsonString);
     const keyHex = "2acf7e91e9864673";
     const ivHex = "1c29882d3ddfcfd6";
     const keyWordArray = CryptoJS.enc.Utf8.parse(keyHex);
     const ivWordArray = CryptoJS.enc.Utf8.parse(ivHex);
     // 使用AES-CBC模式加密数据
-    const encrypted = CryptoJS.AES.encrypt(jsonString, keyWordArray, {
+    const encrypted = CryptoJS.AES.encrypt(plaintextWA, keyWordArray, {
         iv: ivWordArray,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
-    return CryptoJS.enc.Utf8.stringify(encrypted);
+    return encrypted.toString();
 }
 //Crypto-JS库
 function createCryptoJS() {
@@ -2763,8 +2761,6 @@ function createCryptoJS() {
         }(),
         c
 }
-
-
 function Env(a, b) {
     var c = Math.floor;
     return new class {
