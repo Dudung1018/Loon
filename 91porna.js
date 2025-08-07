@@ -25,7 +25,7 @@ let $ = new Env('91')
 
 let body = $response.body
 let url = $request.url
-
+console.log($request)
 const sign = new URLSearchParams($request.body).get('sign')
 const CryptoJS = createCryptoJS();
 
