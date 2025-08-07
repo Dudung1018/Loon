@@ -72,14 +72,7 @@ function encryptAES_CBC(data) {
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
-
-    const decrypted = CryptoJS.AES.decrypt(ciphertextBase64, keyWordArray, {
-        iv: ivWordArray,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-    });
-
-    return CryptoJS.enc.Utf8.stringify(decrypted);
+    return CryptoJS.enc.Utf8.stringify(encrypted);
 }
 //Crypto-JS库
 function createCryptoJS() {
