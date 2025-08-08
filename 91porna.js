@@ -1,23 +1,18 @@
 /***********************************
- #!name=65看
- #!desc=去广告解锁视频
- #!author=小白
- #!date=2025-04-16
+ #!name=91
+ #!desc=修改 vip
+ #!author=Lonely-Lifer
+ #!date=2025-08-08
 
 
- [Rewrite]
- ^https://hm-img\.xuezhumall\.com/videos/(.+)/preview\.m3u8$ header https://hm-img.xuezhumall.com/videos/$1/index.m3u8
- ^https://hm-img\.xuezhumall\.com/videos/(.+)/preview\.m3u8$ url 302 https://hm-img.xuezhumall.com/videos/$1/index.m3u8
 
  [Script]
  # 会员
- http-response ^https://sm-api\.xuezhumall\.com/api/users/profile\?* script-path=https://raw.githubusercontent.com/chmg2025/script/refs/heads/main/65kan.js, requires-body=true, timeout=60, tag=会员
- # 广告
- http-response ^https://sm-api\.xuezhumall\.com/api/common_ads\?* script-path=https://raw.githubusercontent.com/chmg2025/script/refs/heads/main/65kan.js, requires-body=true, timeout=60, tag=广告
+ http-response ^https?:\/\/api\d+\.\d+bbs\.net\/api\.php\/api\/user\/(?<apiName>[A-Za-z0-9_]+)$ script-path=https://raw.githubusercontent.com/Dudung1018/Loon/refs/heads/main/91porna.js, requires-body=true, timeout=60, tag=会员
 
 
  [MITM]
- hostname = *.xuezhumall.com, *.xyz
+ hostname = *.91bbs.net
  ***********************************/
 
 
