@@ -86,10 +86,10 @@ async function encryptSign(data,timestamp) {
     const suffix = "5589d41f92a597d016b037ac37db243d";
     const encoder = new TextEncoder();
 
-    const combined = 'client=pwa&data='+ data+ '&timestamp='+timestamp + suffix;
+    const combined = 'client=pwa&data='+ data + '&timestamp='+timestamp + suffix;
     const encoderData = encoder.encode(combined);
 
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", encoderData);
 
     const a =  new Uint8Array(hashBuffer); // Uint8Array(32)
 
