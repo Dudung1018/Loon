@@ -27,7 +27,7 @@ const CryptoJS = createCryptoJS();
 if (url.indexOf('/user/userInfo') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(decryptAES_CBC(data["data"]))
-    json.data.username = '小白解锁'
+    json.data.nickname = '小白解锁'
     json.data.is_login = 1
     json.data.validate = 1
     json.data.secrets_privilege = true
@@ -36,6 +36,7 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.is_virtual = 'yes'
     json.data.free_view_cnt = 9999
     json.data.vip_str = '永久会员'
+    json.data.coins= 9999
     json.isVip = true
     const encryptData = encryptAES_CBC(JSON.stringify(json))
     const sign = encryptSign(encryptData,data["timestamp"])
