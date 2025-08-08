@@ -102,7 +102,7 @@ function encryptSign(data,timestamp) {
         result.push(hexChars[byte & 0x0f]);
     }
     const hexString = result.join('');
-    return CryptoJS.MD5(hexString);
+    return CryptoJS.MD5(hexString).toString();
 }
 
 
