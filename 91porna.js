@@ -1,4 +1,3 @@
-
 /***********************************
  #!name=65看
  #!desc=去广告解锁视频
@@ -20,13 +19,14 @@
  [MITM]
  hostname = *.xuezhumall.com, *.xyz
  ***********************************/
+import md5 from 'js-md5';
+
 
 let $ = new Env('91')
 
 let body = $response.body
 let url = $request.url
-console.log($)
-const sign = new URLSearchParams($request.body).get('sign')
+
 const CryptoJS = createCryptoJS();
 
 
@@ -43,7 +43,9 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.free_view_cnt = 9999
     json.data.vip_str = '永久会员'
     json.isVip = true
-    data["data"] = encryptAES_CBC(JSON.stringify(json))
+    const encryptData = encryptAES_CBC(JSON.stringify(json))
+    const sign = await encryptSign(encryptData,data['timestamp'])
+    data["data"] = encryptData
     data["sign"] = sign
     $.done({body :JSON.stringify(data)})
 }
@@ -78,6 +80,35 @@ function encryptAES_CBC(data) {
     });
     return encrypted.toString();
 }
+
+
+async function encryptSign(data,timestamp) {
+
+    const suffix = "5589d41f92a597d016b037ac37db243d";
+    const encoder = new TextEncoder();
+
+    const combined = 'client=pwa&data='+ data+ '&timestamp='+timestamp + suffix;
+    const encoderData = encoder.encode(combined);
+
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+    const a =  new Uint8Array(hashBuffer); // Uint8Array(32)
+
+    const hexChars = "0123456789abcdef";
+    const result = [];
+
+    for (let i = 0; i < a.length; i++) {
+        const byte = a[i];
+        result.push(hexChars[(byte >> 4) & 0x0f]);
+        result.push(hexChars[byte & 0x0f]);
+    }
+    const hexString = result.join('');
+    return md5(hexString);
+}
+
+
+
+
 //Crypto-JS库
 function createCryptoJS() {
     var t, e, r, i, n, o, s, a, c = c || function (t, e) {

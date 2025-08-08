@@ -208,7 +208,7 @@ function customHash(input64) {
 
 import md5 from 'js-md5';
 // 你的原始字符串
-const longString = 'bb398faf1de459c98af928806cee220dbad2b8dfe1b13da52a8bcb9c2af287bf';
+const longString = '3fb4e91516f44626a74766d06749a2293443491fbd083c685183af62c00f4952' ;
 
 // 计算 MD5 哈希值
 const md5Hash = md5(longString);
