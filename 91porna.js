@@ -43,7 +43,7 @@ if (url.indexOf('/user/userInfo') !== -1){
     json.data.vip_str = '永久会员'
     json.isVip = true
     const encryptData = encryptAES_CBC(JSON.stringify(json))
-    const sign = await encryptSign(encryptData,data['timestamp'])
+    const sign = await encryptSign(encryptData,data["timestamp"])
     data["data"] = encryptData
     data["sign"] = sign
     $.done({body :JSON.stringify(data)})
