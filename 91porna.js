@@ -84,24 +84,11 @@ function encryptAES_CBC(data) {
 function encryptSign(data,timestamp) {
 
     const suffix = "5589d41f92a597d016b037ac37db243d";
-    const encoder = new TextEncoder();
 
     const combined = 'client=pwa&data='+ data + '&timestamp='+timestamp + suffix;
-    const encoderData = encoder.encode(combined);
 
-    const hashBuffer = CryptoJS.SHA256(encoderData).toString();
+    const hexString = CryptoJS.SHA256(combined).toString();
 
-    const a =  new Uint8Array(hashBuffer); // Uint8Array(32)
-
-    const hexChars = "0123456789abcdef";
-    const result = [];
-
-    for (let i = 0; i < a.length; i++) {
-        const byte = a[i];
-        result.push(hexChars[(byte >> 4) & 0x0f]);
-        result.push(hexChars[byte & 0x0f]);
-    }
-    const hexString = result.join('');
     return CryptoJS.MD5(hexString).toString();
 }
 
