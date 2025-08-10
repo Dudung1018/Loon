@@ -21,12 +21,15 @@ let url = $request.url
 
 
 if (url.indexOf('/ucp/index') !== -1){
+    let header = $response.headers
+    header["x-cookie-auth"] = "6364356234653933313431636532326236646332353531363636363861666666"
     let data = JSON.parse(body)
     let json = data["data"]
     json.user.username = '小白解锁'
     json.user.nickname = '小白解锁'
     json.user.isVip = 1
     json.user.duetime = '2099-12-31'
+    json.user.goldcoin = 9999
     json.uinfo.play_daily_remainders = 9999
     json.uinfo.down_daily_remainders = 9999
     json.uinfo.minivod_play_daily_remainders = 9999
