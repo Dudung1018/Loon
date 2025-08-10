@@ -8,7 +8,7 @@
 
  [Script]
  # 会员
- 香蕉视频 = type=http-response,pattern=^https?:\/\/wap7\.lvshenyun\.com\/ucp\/index(?:\/)?(?:\?.*)?$,requires-body=1,max-size=0,binary-body-mode=0,timeout=60,debug=1,script-path="https://raw.githubusercontent.com/Dudung1018/Loon/refs/heads/main/91porna.js"
+ 香蕉视频 = type=http-response,pattern=^https?:\/\/wap7\.lvshenyun\.com\/ucp\/index(?:\/)?(?:\?.*)?$,requires-body=1,max-size=0,binary-body-mode=0,timeout=60,debug=1,script-path="https://raw.githubusercontent.com/Dudung1018/Loon/refs/heads/main/xjsp.js"
 
  [MITM]
  hostname = %APPEND% *.xxoo137.org
