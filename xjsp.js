@@ -28,7 +28,8 @@ if (url.indexOf('/ucp/index') !== -1){
     json.user.username = '小白解锁'
     json.user.nickname = '小白解锁'
     json.user.isVip = 1
-    json.user.duetime = '2099-12-31'
+    json.user.duetime = '2099-12-31 23:59:59'
+    json.user.dueday = '2099-12-31'
     json.user.goldcoin = 9999
     json.uinfo.play_daily_remainders = 9999
     json.uinfo.down_daily_remainders = 9999
