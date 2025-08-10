@@ -22,12 +22,11 @@ let url = $request.url
 
 if (url.indexOf('/ucp/index') !== -1){
     let data = JSON.parse(body)
-    console.log(data)
     let json = JSON.parse(data["data"])
     json.user.username = '小白解锁'
     json.user.nickname = '小白解锁'
     json.user.isVip = 1
-    data["data"] = json
+    data["data"] = JSON.stringify(json)
     $.done({body :JSON.stringify(data)})
 }
 function Env(a, b) {
