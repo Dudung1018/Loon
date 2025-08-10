@@ -34,7 +34,8 @@ if (url.indexOf('/ucp/index') !== -1){
     json.uinfo.down_daily_remainders = 9999
     json.uinfo.minivod_play_daily_remainders = 9999
     data["data"] =json
-    $.done({body :JSON.stringify(data)})
+    $.done({ headers : header,
+        body :JSON.stringify(data)})
 }
 function Env(a, b) {
     var c = Math.floor;
