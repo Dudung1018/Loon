@@ -26,6 +26,10 @@ if (url.indexOf('/ucp/index') !== -1){
     json.user.username = '小白解锁'
     json.user.nickname = '小白解锁'
     json.user.isVip = 1
+    json.user.duetime = '2099-12-31'
+    json.uinfo.play_daily_remainders = 9999
+    json.uinfo.down_daily_remainders = 9999
+    json.uinfo.minivod_play_daily_remainders = 9999
     data["data"] =json
     $.done({body :JSON.stringify(data)})
 }
