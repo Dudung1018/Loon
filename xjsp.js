@@ -22,7 +22,7 @@ let url = $request.url
 
 if (url.indexOf('/ucp/index') !== -1){
     let header = $response.headers
-    header["x-cookie-auth"] = "6364356234653933313431636532326236646332353531363636363861666666"
+    header["x-cookie-auth"] = "3463323661363165616133623139633037626134366530363331663333383734"
     let data = JSON.parse(body)
     let json = data["data"]
     json.user.username = '小白解锁'
