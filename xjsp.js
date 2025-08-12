@@ -17,27 +17,16 @@
 let $ = new Env('xjsp')
 
 let body = $response.body
-let url = $request.url
+let url = $request.url // https://wap7.lvshenyun.com/ucp/index
+if (url.indexOf("/ucp/index") !== -1) {
+    body.data.uinfo.play_daily_remainders = 10086
+    body.data.uinfo.minivod_play_daily_remainders = 10010
+    body.data.user.username = 'll'
+    body.data.user.nickname = 'lx'
 
-
-if (url.indexOf('/ucp/index') !== -1){
-    let header = $response.headers
-    header["x-cookie-auth"] = "3463323661363165616133623139633037626134366530363331663333383734"
-    let data = JSON.parse(body)
-    let json = data["data"]
-    json.user.username = '小白解锁'
-    json.user.nickname = '小白解锁'
-    json.user.isVip = 1
-    json.user.duetime = '2099-12-31 23:59:59'
-    json.user.dueday = '2099-12-31'
-    json.user.goldcoin = 9999
-    json.uinfo.play_daily_remainders = 9999
-    json.uinfo.down_daily_remainders = 9999
-    json.uinfo.minivod_play_daily_remainders = 9999
-    data["data"] =json
-    $.done({ headers : header,
-        body :JSON.stringify(data)})
 }
+
+
 function Env(a, b) {
     var c = Math.floor;
     return new class {
