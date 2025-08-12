@@ -19,6 +19,8 @@ let $ = new Env('xjsp')
 let body = $response.body
 let url = $request.url // https://wap7.lvshenyun.com/ucp/index
 if (url.indexOf("/ucp/index") !== -1) {
+    // body.data.uinfo
+    body = JSON.parse(body)
     body.data.uinfo.play_daily_remainders = 10086
     body.data.uinfo.minivod_play_daily_remainders = 10010
     body.data.user.username = 'll'
