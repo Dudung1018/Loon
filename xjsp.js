@@ -23,7 +23,7 @@ if (url.indexOf("/ucp/index") !== -1) {
     body.data.uinfo.minivod_play_daily_remainders = 10010
     body.data.user.username = 'll'
     body.data.user.nickname = 'lx'
-
+    $.done({body})
 }
 
 
