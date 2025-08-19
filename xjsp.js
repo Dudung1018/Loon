@@ -18,6 +18,7 @@ let $ = new Env('xjsp')
 
 let body = $response.body
 let url = $request.url // https://wap7.lvshenyun.com/ucp/index
+console.log($request.body)
 if (url.indexOf("/ucp/index") !== -1) {
     // body.data.uinfo
     body = JSON.parse(body)
