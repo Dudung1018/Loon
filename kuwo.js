@@ -15,6 +15,7 @@
  hostname = *.kuwo.cn
  ***********************************/
 
+
 let $ = new Env('酷我纯净版')
 
 let body = $response.body
@@ -23,9 +24,24 @@ let url = $request.url
 if (url.indexOf('/vip/manage/new') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(data["data"])
-    json.result.vipUnionTXSP = ["true","true"]
-    json.result.vipUnionKKMH = ["true","true"]
-    json.result.vipUnionMGTV = ["true","true"]
+    json.isNewUser = '1'
+    json.vipOverSeasExpire = '1'
+    json.isYearUser = '1'
+    json.vipExpire = '1'
+    json.vip3Expire = '1'
+    json.biedAlbum = '1'
+    json.vipmAutoPayUser = '1'
+    json.time = '1'
+    json.vipmExpire = '1'
+    json.vipLuxuryExpire = '1'
+    json.luxAutoPayUser = '1'
+    json.vipWatch1Expire = '1'
+    json.vipAdExpire = '1'
+    json.svipAutoPayUser = '1'
+    json.svipExpire = '1'
+    json.biedSong = '1'
+    json.vipAdAutoPayUser = '1'
+    json.experienceExpire = '1'
     data.data = json
     $.done({body :JSON.stringify(data)})
 }
