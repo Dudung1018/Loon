@@ -23,25 +23,24 @@ let url = $request.url
 
 if (url.indexOf('/user/vip') !== -1){
     let data = JSON.parse(body)
-    let json = JSON.parse(data["data"])
+    let json = data.data
     json.isNewUser = '1'
-    json.vipOverSeasExpire = '1'
+    json.vipOverSeasExpire = '1767139200000'
     json.isYearUser = '1'
-    json.vipExpire = '1'
-    json.vip3Expire = '1'
-    json.biedAlbum = '1'
-    json.vipmAutoPayUser = '1'
-    json.time = '1'
-    json.vipmExpire = '1'
-    json.vipLuxuryExpire = '1'
+    json.vipExpire = '1767139200000'
+    json.vip3Expire = '1767139200000'
+    json.biedAlbum = '1767139200000'
+    json.vipmAutoPayUser = '1767139200000'
+    json.vipmExpire = '1767139200000'
+    json.vipLuxuryExpire = '1767139200000'
     json.luxAutoPayUser = '1'
-    json.vipWatch1Expire = '1'
-    json.vipAdExpire = '1'
+    json.vipWatch1Expire = '1767139200000'
+    json.vipAdExpire = '1767139200000'
     json.svipAutoPayUser = '1'
-    json.svipExpire = '1'
-    json.biedSong = '1'
+    json.svipExpire = '1767139200000'
+    json.biedSong = '1767139200000'
     json.vipAdAutoPayUser = '1'
-    json.experienceExpire = '1'
+    json.experienceExpire = '1767139200000'
     data.data = json
     $.done({body :JSON.stringify(data)})
 }
