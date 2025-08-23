@@ -20,9 +20,6 @@ let $ = new Env('91')
 let body = $response.body
 let url = $request.url
 
-const CryptoJS = createCryptoJS();
-
-
 if (url.indexOf('/vip/manage/new') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(decryptAES_CBC(data["data"]))
