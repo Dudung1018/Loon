@@ -26,6 +26,7 @@ if (url.indexOf('/vip/manage/new') !== -1){
     json.result.vipUnionTXSP = ["true","true"]
     json.result.vipUnionKKMH = ["true","true"]
     json.result.vipUnionMGTV = ["true","true"]
+    data.data = json
     $.done({body :JSON.stringify(data)})
 }
 
