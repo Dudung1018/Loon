@@ -21,7 +21,7 @@ let $ = new Env('酷我纯净版')
 let body = $response.body
 let url = $request.url
 
-if (url.indexOf('/vip/manage/new') !== -1){
+if (url.indexOf('/user/vip') !== -1){
     let data = JSON.parse(body)
     let json = JSON.parse(data["data"])
     json.isNewUser = '1'
