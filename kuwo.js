@@ -15,14 +15,14 @@
  hostname = *.kuwo.cn
  ***********************************/
 
-let $ = new Env('91')
+let $ = new Env('酷我纯净版')
 
 let body = $response.body
 let url = $request.url
 
 if (url.indexOf('/vip/manage/new') !== -1){
     let data = JSON.parse(body)
-    let json = JSON.parse(decryptAES_CBC(data["data"]))
+    let json = JSON.parse(data["data"])
     json.result.vipUnionTXSP = ["true","true"]
     json.result.vipUnionKKMH = ["true","true"]
     json.result.vipUnionMGTV = ["true","true"]
