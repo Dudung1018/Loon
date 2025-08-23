@@ -8,7 +8,7 @@
 
  [Script]
  # 会员
- http-response ^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/user\/vip\?op=ui&uid=\d+&sid=\d+&signver=new$ script-path=https://raw.githubusercontent.com/Dudung1018/Loon/refs/heads/main/91porna.js, requires-body=true, timeout=60, tag=会员
+ http-response ^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/user\/vip\?op=ui&uid=\d+&sid=\d+&signver=new$ script-path=https://raw.githubusercontent.com/Dudung1018/Loon/refs/heads/main/kuwo.js, requires-body=true, timeout=60, tag=会员
 
 
  [MITM]
