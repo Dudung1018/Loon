@@ -325,7 +325,7 @@ if (url.indexOf('/user/vip') !== -1) {
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
-    const encryptedData = Buffer.from(q, 'base64');
+    const encryptedData = new Buffer(q, 'base64');
     const key = new Uint8Array([121, 108, 122, 115, 120, 107, 119, 109]); // "kwks&@69".getBytes()
     let decryptedString;
     try {
@@ -341,7 +341,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
     const encryptedNewData = decrypt.bFunc2(new TextEncoder().encode(params.toString()), key);
-    const newQ = Buffer.from(encryptedNewData).toString('base64')
+    const newQ = new Buffer(encryptedNewData).toString('base64')
     const newUrl = request.searchParams.set('q',newQ).toString();
     $.done({url: newUrl});
 }
