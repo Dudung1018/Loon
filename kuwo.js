@@ -350,6 +350,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const params = new URLSearchParams(decryptedString);
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
+    $.log(params.toString())
     const encryptedNewData = decrypt.bFunc2(new TextEncoder().encode(params.toString()), key);
     const newQ = uint8ArrayToBase64(encryptedNewData);
     $.log(newQ)
