@@ -343,7 +343,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         // 将解密后的字节数组转换为字符串（如果内容是文本）
         const textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
-        decryptedString = decryptedString.replace(/\\0+$/g, '');
+        decryptedString = decryptedString.replace(/\u0000+$/g, '');
         $.log('解密后的数据:', decryptedString);
     } catch (error) {
         $.error('解密过程中出错:', error);
