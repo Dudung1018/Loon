@@ -354,8 +354,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const newQ = uint8ArrayToBase64(encryptedNewData);
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
-    $.log(newUrl)
-    $.done({url: newUrl});
+    $.done({url: decodeURIComponent(newUrl)});
 }
 
 function Env(a, b) {
