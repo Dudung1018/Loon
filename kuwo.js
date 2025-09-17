@@ -303,22 +303,22 @@ if (url.indexOf('/user/vip') !== -1) {
     let data = JSON.parse(body)
     let json = data.data
     json.isNewUser = '1'
-    json.vipOverSeasExpire = '1767139200000'
+    json.vipOverSeasExpire = 1767139200000;
     json.isYearUser = '1'
-    json.vipExpire = '1767139200000'
-    json.vip3Expire = '1767139200000'
-    json.biedAlbum = '1767139200000'
-    json.vipmAutoPayUser = '1767139200000'
-    json.vipmExpire = '1767139200000'
-    json.vipLuxuryExpire = '1767139200000'
+    json.vipExpire = 1767139200000;
+    json.vip3Expire = 1767139200000;
+    json.biedAlbum = 1767139200000;
+    json.vipmAutoPayUser = 1767139200000;
+    json.vipmExpire = 1767139200000;
+    json.vipLuxuryExpire = 1767139200000;
     json.luxAutoPayUser = '1'
-    json.vipWatch1Expire = '1767139200000'
-    json.vipAdExpire = '1767139200000'
+    json.vipWatch1Expire = 1767139200000;
+    json.vipAdExpire = 1767139200000;
     json.svipAutoPayUser = '1'
-    json.svipExpire = '1767139200000'
-    json.biedSong = '1767139200000'
+    json.svipExpire = 1767139200000;
+    json.biedSong = 1767139200000;
     json.vipAdAutoPayUser = '1'
-    json.experienceExpire = '1767139200000'
+    json.experienceExpire = 1767139200000;
     data.data = json
     $.done({body: JSON.stringify(data)})
 }
@@ -347,26 +347,35 @@ if (url.indexOf('/mobi.s') !== -1) {
         decryptedString = decryptedString.replace(/\u0000+$/g, '');
         // 如果包含大量乱码字符，尝试用 latin1 解码
         if (/�{3,}/.test(decryptedString)) {
-            textDecoder = new TextDecoder('latin1');
-            decryptedString = textDecoder.decode(decryptedData).replace(/\u0000+$/g, '');
+            try {
+                textDecoder = new TextDecoder('latin1');
+                decryptedString = textDecoder.decode(decryptedData).replace(/\u0000+$/g, '');
+            } catch(e) {
+                $.log("不支持 latin1 解码，保持 utf-8");
+            }
         }
         $.log('解密后的数据:', decryptedString);
     } catch (error) {
         $.error('解密过程中出错:', error);
+        return $.done();
     }
     // 使用 URLSearchParams 之前，先尝试 latin1 解码并 URL 解码
     let decodedStr = decryptedString;
-    try {
-        decodedStr = decodeURIComponent(decodedStr);
-    } catch (e) {
-        $.log("URL 解码失败，保持原文");
+    if (/%[0-9A-Fa-f]{2}/.test(decodedStr)) {
+        try {
+            decodedStr = decodeURIComponent(decodedStr);
+        } catch (e) {
+            $.log("URL 解码失败，保持原文");
+        }
     }
     const params = new URLSearchParams(decodedStr);
     $.log('解密后的参数',params.toString())
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
     $.log('替换的参数',params.toString())
-    const encryptedNewData = decrypt.bFunc2(new TextEncoder().encode(encodeURIComponent(params.toString())), key);
+    // 使用 aFunc 重新加密，不要再做 encodeURIComponent
+    const plainBytes = new TextEncoder().encode(params.toString());
+    const encryptedNewData = decrypt.aFunc(plainBytes, plainBytes.length, key);
     const newQ = uint8ArrayToBase64(encryptedNewData);
     $.log('新的 q',newQ)
     request.searchParams.set('q', newQ);
