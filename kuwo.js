@@ -348,13 +348,13 @@ if (url.indexOf('/mobi.s') !== -1) {
         $.error('解密过程中出错:', error);
     }
     const params = new URLSearchParams(decryptedString);
-    $.log(params.toString())
+    $.log('解密后的参数',params.toString())
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
-    $.log(params.toString())
+    $.log('替换的参数',params.toString())
     const encryptedNewData = decrypt.bFunc2(new TextEncoder().encode(encodeURIComponent(params.toString())), key);
     const newQ = uint8ArrayToBase64(encryptedNewData);
-    $.log(newQ)
+    $.log('新的 q',newQ)
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
     $.log('新的 URL:', decodeURIComponent(newUrl));
