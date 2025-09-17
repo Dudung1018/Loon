@@ -297,11 +297,8 @@ const decrypt = {
 };
 
 let $ = new Env('酷我纯净版')
-
-let body = $response.body
-let url = $request.url
-
 if (url.indexOf('/user/vip') !== -1) {
+    let body = $response.body
     let data = JSON.parse(body)
     let json = data.data
     json.isNewUser = '1'
@@ -325,6 +322,7 @@ if (url.indexOf('/user/vip') !== -1) {
     $.done({body: JSON.stringify(data)})
 }
 if (url.indexOf('/mobi.s') !== -1) {
+    let url = $request.url
     const request = new URL(url);
     let q = request.searchParams.get('q');
     const encryptedData = Buffer.from(q, 'base64');
