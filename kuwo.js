@@ -325,7 +325,7 @@ if (url.indexOf('/user/vip') !== -1) {
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
-    const encryptedData = new Buffer(q, 'base64');
+    const encryptedData = base64ToUint8Array(q);
     const key = new Uint8Array([121, 108, 122, 115, 120, 107, 119, 109]); // "kwks&@69".getBytes()
     let decryptedString;
     try {
@@ -341,8 +341,8 @@ if (url.indexOf('/mobi.s') !== -1) {
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
     const encryptedNewData = decrypt.bFunc2(new TextEncoder().encode(params.toString()), key);
-    const newQ = new Buffer(encryptedNewData).toString('base64')
-    const newUrl = request.searchParams.set('q',newQ).toString();
+    const newQ = uint8ArrayToBase64(encryptedNewData);
+    const newUrl = request.searchParams.set('q', newQ).toString();
     $.done({url: newUrl});
 }
 
@@ -657,3 +657,23 @@ function Env(a, b) {
     }(a, b)
 }
 
+
+// base64 解码成 Uint8Array
+function base64ToUint8Array(base64) {
+    const binary = atob(base64);
+    const len = binary.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
+}
+
+// Uint8Array 编码为 base64
+function uint8ArrayToBase64(bytes) {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+}
