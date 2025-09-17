@@ -342,7 +342,8 @@ if (url.indexOf('/mobi.s') !== -1) {
     params.set('user', 'C_APK_guanwang_12609069939969033731');
     const encryptedNewData = decrypt.bFunc2(new TextEncoder().encode(params.toString()), key);
     const newQ = uint8ArrayToBase64(encryptedNewData);
-    const newUrl = request.searchParams.set('q', newQ).toString();
+    request.searchParams.set('q', newQ);
+    const newUrl = request.toString();
     $.done({url: newUrl});
 }
 
