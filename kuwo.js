@@ -324,9 +324,9 @@ if (url.indexOf('/user/vip') !== -1) {
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
-    console.log(request)
+    $.log(request)
     let q = request.searchParams.get('q');
-    console.log(q)
+    $.log(q)
     const encryptedData = base64ToUint8Array(q);
     const key = new Uint8Array([121, 108, 122, 115, 120, 107, 119, 109]); // "kwks&@69".getBytes()
     let decryptedString;
@@ -335,9 +335,9 @@ if (url.indexOf('/mobi.s') !== -1) {
         // 将解密后的字节数组转换为字符串（如果内容是文本）
         const textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
-        console.log('解密后的数据:', decryptedString);
+        $.log('解密后的数据:', decryptedString);
     } catch (error) {
-        console.error('解密过程中出错:', error);
+        $.error('解密过程中出错:', error);
     }
     const params = new URLSearchParams(decryptedString);
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
@@ -346,6 +346,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const newQ = uint8ArrayToBase64(encryptedNewData);
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
+    $.log(newUrl)
     $.done({url: newUrl});
 }
 
