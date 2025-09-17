@@ -341,14 +341,27 @@ if (url.indexOf('/mobi.s') !== -1) {
     try {
         const decryptedData = decrypt.aFunc5(encryptedData, key);
         // 将解密后的字节数组转换为字符串（如果内容是文本）
-        const textDecoder = new TextDecoder('utf-8');
+        let textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
+        // 去掉尾部 null 字节
         decryptedString = decryptedString.replace(/\u0000+$/g, '');
+        // 如果包含大量乱码字符，尝试用 latin1 解码
+        if (/�{3,}/.test(decryptedString)) {
+            textDecoder = new TextDecoder('latin1');
+            decryptedString = textDecoder.decode(decryptedData).replace(/\u0000+$/g, '');
+        }
         $.log('解密后的数据:', decryptedString);
     } catch (error) {
         $.error('解密过程中出错:', error);
     }
-    const params = new URLSearchParams(decryptedString);
+    // 使用 URLSearchParams 之前，先尝试 latin1 解码并 URL 解码
+    let decodedStr = decryptedString;
+    try {
+        decodedStr = decodeURIComponent(decodedStr);
+    } catch (e) {
+        $.log("URL 解码失败，保持原文");
+    }
+    const params = new URLSearchParams(decodedStr);
     $.log('解密后的参数',params.toString())
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
