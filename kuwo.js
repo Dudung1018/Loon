@@ -324,7 +324,9 @@ if (url.indexOf('/user/vip') !== -1) {
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
+    console.log(request)
     let q = request.searchParams.get('q');
+    console.log(q)
     const encryptedData = base64ToUint8Array(q);
     const key = new Uint8Array([121, 108, 122, 115, 120, 107, 119, 109]); // "kwks&@69".getBytes()
     let decryptedString;
