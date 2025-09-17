@@ -326,6 +326,14 @@ if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     $.log(request)
     let q = request.searchParams.get('q');
+    if (!q) {
+        $.error("未获取到 q 参数");
+    } else {
+        // 把 URL 中被替换成空格的 + 还原
+        q = q.replace(/ /g, '+');
+        q = decodeURIComponent(q);
+        $.log("q 参数:", q);
+    }
     $.log(q)
     const encryptedData = base64ToUint8Array(q);
     const key = new Uint8Array([121, 108, 122, 115, 120, 107, 119, 109]); // "kwks&@69".getBytes()
