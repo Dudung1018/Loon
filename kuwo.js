@@ -398,8 +398,9 @@ function base64ToUint8Array(base64) {
 }
 
 let $ = new Env('酷我纯净版')
+decrypt2.init()
 let url = $request.url
-console.log('url:',url)
+$.log('url:',url)
 if (url.indexOf('/user/vip') !== -1) {
     let body = $response.body
     let data = JSON.parse(body)
