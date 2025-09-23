@@ -433,6 +433,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         // 把 URL 中被替换成空格的 + 还原
         q = q.replace(/ /g, '+');
         q = decodeURIComponent(q);
+        $.log(q)
     }
     const encryptedData = base64ToUint8Array(q);
     $.log(encryptedData)
