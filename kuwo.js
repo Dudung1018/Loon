@@ -428,6 +428,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
     if (!q) {
+        console.log("q 在这里是空:", q)
         $.error("未获取到 q 参数");
     } else {
         // 把 URL 中被替换成空格的 + 还原
