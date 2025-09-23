@@ -389,8 +389,8 @@ const result = decrypt.a3(encryptedData, encryptedData.length, new Uint8Array(Bu
 // const result1 = new TextDecoder().decode(decrypt2.a1(result,result.length));
 // 假设 b.a(a2, a2.length) 返回一个 JS 字符数组
 const charArray = decrypt2.a1(result,result.length).join('');
+console.log(charArray)
 // 1. 准备需要解密的数据和密钥
-const base64String = "jxlXKrN6ov0qjrG8fbSKmpit4xoqWp9grePR8gkILGjVF40+eNySowRjWiByKwSKNjUHUEvAMC72A5SVcboC7NFwSxpvtvVt0g7v9Q2QRKKWQdIvoiFs+IITyFiHSFkRFelpsFspaCxk+dmZyQnnmoYBmRj9vkdxud0+PonkVUY5OERczja04wLJZA2ge29WRS2tFXf7whXQI5+S4LqKIZM5UDoULdPsDRjT2jgMWS4m7fDSaiIqxKk960DYqig2Jl5BIY8Wot3bLzNiIcqPxNuRL3Fn6hPRwaLkBynt5Xy0IYKcg4B2lwI5steiPICFOThEXM42tOOJ55nVdS+JiAkg5yVM+XFZIKMgNcGO+1n9BtycEKow/0VTkgpzL8Kzd+QibIRwz5FRvqzbUWGoY8ryRXQc1hCklHkLFrDuLZvioYBLhPKIqADAm4rFkvBKY4TjeHckbf54ueTs+Dz8z/gNeSWED8ova1id0JcxSGNNCsAO3xafcab9oFkwdksioLrA2wCS33oDrth5wOxoyuCl2E98IrT5m/908YGHzjEihY4tk3aVnSUE9rCpV8dtV6Rcbx6Xpzgh1HeSvIhDhydvQCbBR5ke47SgL62qCK6F3Q7wgRKraj+ksJ+xpWrWPz3Ek0FS2IJVbzHn9gvyxJtUjz2yQgLuVmb5fVo4R8A=";
 const decryptedData = base64ToUint8Array(charArray);
 
 // 2. 准备密钥
@@ -403,4 +403,4 @@ const key = new Uint8Array(Buffer.from('ylzsxkwm'));//[121, 108, 122, 115, 120, 
     const decryptedDataWithPadding = decrypt.b1(decryptedData, key);
 
     const decryptedString = textDecoder.decode(decryptedDataWithPadding);
-console.log(decryptedString);  // 默认 utf-8)
+    console.log(decryptedString);  // 默认 utf-8)

@@ -428,27 +428,22 @@ if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
     if (!q) {
-        console.log("q 在这里是空:", q)
         $.error("未获取到 q 参数");
     } else {
         // 把 URL 中被替换成空格的 + 还原
         q = q.replace(/ /g, '+');
         q = decodeURIComponent(q);
-        console.log("q:", q)
-        $.log(q)
     }
     const encryptedData = base64ToUint8Array(q);
-    $.log(encryptedData)
     const key = new Uint8Array(Buffer.from('ylzsxkwm'))
     let decryptedString;
     try {
         const decryptedData = decrypt.b1(encryptedData, key);
-        $.log(decryptedData)
         let textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
     } catch (error) {
         $.error('解密过程中出错:', error);
-        return $.done();
+        $.done();
     }
     const params = new URLSearchParams(decryptedString);
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
