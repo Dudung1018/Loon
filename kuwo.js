@@ -435,7 +435,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         q = decodeURIComponent(q);
     }
     const encryptedData = base64ToUint8Array(q);
-    const key = new Uint8Array(Buffer.from('ylzsxkwm'))
+    const key = new TextEncoder().encode("ylzsxkwm");
     let decryptedString;
     try {
         const decryptedData = decrypt.b1(encryptedData, key);
