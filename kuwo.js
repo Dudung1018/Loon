@@ -450,6 +450,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
     const newQ = decrypt2.a1(encryptedNewData,encryptedNewData.length).join('');
     $.log('newQ:',newQ)
+    const request = new URL(url);
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
     $.done({url: newUrl});
