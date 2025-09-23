@@ -435,10 +435,12 @@ if (url.indexOf('/mobi.s') !== -1) {
         q = decodeURIComponent(q);
     }
     const encryptedData = base64ToUint8Array(q);
+    $.log(encryptedData)
     const key = new Uint8Array(Buffer.from('ylzsxkwm'))
     let decryptedString;
     try {
         const decryptedData = decrypt.b1(encryptedData, key);
+        $.log(decryptedData)
         let textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
     } catch (error) {
