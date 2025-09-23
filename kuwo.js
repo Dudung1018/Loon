@@ -426,8 +426,8 @@ if (url.indexOf('/user/vip') !== -1) {
     $.done({body: JSON.stringify(data)})
 }
 if (url.indexOf('/mobi.s') !== -1) {
-    const request = new URL(url);
-    let q = request.searchParams.get('q');
+    const match = url.match(/[?&]q=([^&]*)/);
+    let q = match ? match[1] : null;
     $.log('q:',q)
     const encryptedData = base64ToUint8Array(q);
     const key = new TextEncoder().encode("ylzsxkwm");
@@ -441,6 +441,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         $.error('解密过程中出错:', error);
         $.done();
     }
+    decryptedString.replace(/\+/g, "%2B")；
     const params = new URLSearchParams(decryptedString);
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');

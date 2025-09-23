@@ -391,7 +391,7 @@ const result = decrypt.a3(encryptedData, encryptedData.length, new Uint8Array(Bu
 const charArray = decrypt2.a1(result,result.length).join('');
 console.log(charArray)
 // 1. 准备需要解密的数据和密钥
-const decryptedData = base64ToUint8Array(charArray);
+const decryptedData = base64ToUint8Array('SDKKpI8vPfYgGOuiJY59OesTy+mqaQKYFac251bPuBRM0u1UzRsvg3cndng/pnpXwfK1+bWJuH/XufBCamZJv1kW0eCgeZ8NuNLz2kliXB0AQM2vcl3/38ptfRS7yTeKIbPxc6Y5gUqt2Es4PAW+sp9YaYDz+U/a7jFUpS1FbxeJSSV+PGg2fu4xVKUtRW8XrdhLODwFvrJF1KntJ2IIMzew3dwQ+/7VaY24ScDtD8B3Y/WSbNmsFK3YSzg8Bb6yYm3YFXh71ds2G/B0YeI7Y63YSzg8Bb6yP62/Cqer1AkPrhKu/');
 
 // 2. 准备密钥
 const key = new Uint8Array(Buffer.from('ylzsxkwm'));//[121, 108, 122, 115, 120, 107, 119, 109]
