@@ -441,7 +441,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         $.error('解密过程中出错:', error);
         $.done();
     }
-    decryptedString.replace(/\+/g, "%2B")；
+    decryptedString.replace(/\+/g, "%2B");
     const params = new URLSearchParams(decryptedString);
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
