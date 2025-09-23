@@ -1,19 +1,18 @@
-/***********************************
- #!name=酷我纯净版
- #!desc=修改 vip
- #!author=Lonely-Lifer
- #!date=2025-08-23
+/************
+#!name=酷我纯净版
+#!desc=修改 vip
+#!author=Lonely-Lifer
+#!date=2025-08-23
 
+    [Script]
+# 会员
+会员 = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/user\/vip\?op=ui&uid=\d+&sid=\d+&signver=new$,requires-body=true,max-size=0,binary-body-mode=0, timeout=60, script-path="https://loon.dudung.cloudns.org/kuwo.js"
+# 播放
+播放 = type=http-request, pattern=^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q=, requires-body=true,max-size=0,binary-body-mode=0, timeout=60,script-path="https://loon.dudung.cloudns.org/kuwo.js"
 
-
- [Script]
- # 会员
- http-response ^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/user\/vip\?op=ui&uid=\d+&sid=\d+&signver=new$ script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=会员
- http-request ^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q= script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=播放
-
- [MITM]
- hostname = *.kuwo.cn
- ***********************************/
+    [MITM]
+hostname = %APPEND% *.kuwo.cn
+****************/
 
 const decrypt = {
     f4894a: 'ylzsxkwm'.split('').map((c) => c.charCodeAt(0)),
@@ -400,6 +399,7 @@ function base64ToUint8Array(base64) {
 
 let $ = new Env('酷我纯净版')
 let url = $request.url
+console.log('url:',url)
 if (url.indexOf('/user/vip') !== -1) {
     let body = $response.body
     let data = JSON.parse(body)
@@ -427,6 +427,7 @@ if (url.indexOf('/user/vip') !== -1) {
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
+    console.log('q:',q)
     const encryptedData = base64ToUint8Array(q);
     const key = new TextEncoder().encode("ylzsxkwm");
     let decryptedString;
@@ -434,6 +435,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         const decryptedData = decrypt.b1(encryptedData, key);
         let textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
+        console.log('解密结果:', decryptedString);
     } catch (error) {
         $.error('解密过程中出错:', error);
         $.done();
@@ -445,7 +447,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const decryptedData = new TextEncoder().encode(params.toString());
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
     const newQ = decrypt2.a1(encryptedNewData,encryptedNewData.length).join('');
-    $.msg("调试", "", newQ);
+    console.log('newQ:',newQ)
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
     $.done({url: newUrl});
