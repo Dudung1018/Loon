@@ -428,7 +428,7 @@ if (url.indexOf('/user/vip') !== -1) {
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
-    console.log('q:',q)
+    $.log('q:',q)
     const encryptedData = base64ToUint8Array(q);
     const key = new TextEncoder().encode("ylzsxkwm");
     let decryptedString;
@@ -436,7 +436,7 @@ if (url.indexOf('/mobi.s') !== -1) {
         const decryptedData = decrypt.b1(encryptedData, key);
         let textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
-        console.log('解密结果:', decryptedString);
+        $.log('解密结果:', decryptedString);
     } catch (error) {
         $.error('解密过程中出错:', error);
         $.done();
@@ -448,7 +448,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const decryptedData = new TextEncoder().encode(params.toString());
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
     const newQ = decrypt2.a1(encryptedNewData,encryptedNewData.length).join('');
-    console.log('newQ:',newQ)
+    $.log('newQ:',newQ)
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
     $.done({url: newUrl});
