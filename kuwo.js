@@ -427,13 +427,6 @@ if (url.indexOf('/user/vip') !== -1) {
 if (url.indexOf('/mobi.s') !== -1) {
     const request = new URL(url);
     let q = request.searchParams.get('q');
-    if (!q) {
-        $.error("未获取到 q 参数");
-    } else {
-        // 把 URL 中被替换成空格的 + 还原
-        q = q.replace(/ /g, '+');
-        q = decodeURIComponent(q);
-    }
     const encryptedData = base64ToUint8Array(q);
     const key = new TextEncoder().encode("ylzsxkwm");
     let decryptedString;
@@ -452,6 +445,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     const decryptedData = new TextEncoder().encode(params.toString());
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
     const newQ = decrypt2.a1(encryptedNewData,encryptedNewData.length).join('');
+    $.log(newQ)
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
     $.done({url: newUrl});
