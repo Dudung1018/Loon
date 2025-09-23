@@ -449,7 +449,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
     //加密
-    const decryptedData = new Uint8Array(Buffer.from(params.toString()));
+    const decryptedData = new TextEncoder().encode(params.toString());
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
     const newQ = decrypt2.a1(encryptedNewData,encryptedNewData.length).join('');
     request.searchParams.set('q', newQ);
