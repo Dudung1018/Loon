@@ -296,26 +296,26 @@ const decrypt = {
     }
 
 }
-const decrypt2 = {
+const encrypt = {
     f4891a: 'mobile',
     f4892b: new Array(64),
     f4893c: new Array(128),
     init() {
         let i2 = 0;
         for (let c = 'A'.charCodeAt(0); c <= 'Z'.charCodeAt(0); c++) {
-            decrypt2.f4892b[i2++] = String.fromCharCode(c);
+            decrypt.f4892b[i2++] = String.fromCharCode(c);
         }
         for (let c = 'a'.charCodeAt(0); c <= 'z'.charCodeAt(0); c++) {
-            decrypt2.f4892b[i2++] = String.fromCharCode(c);
+            decrypt.f4892b[i2++] = String.fromCharCode(c);
         }
         for (let c = '0'.charCodeAt(0); c <= '9'.charCodeAt(0); c++) {
-            decrypt2.f4892b[i2++] = String.fromCharCode(c);
+            decrypt.f4892b[i2++] = String.fromCharCode(c);
         }
-        decrypt2.f4892b[i2++] = '+';
-        decrypt2.f4892b[i2++] = '/';
+        decrypt.f4892b[i2++] = '+';
+        decrypt.f4892b[i2++] = '/';
 
         for (let i = 0; i < 64; i++) {
-            decrypt2.f4893c[decrypt2.f4892b[i].charCodeAt(0)] = i;
+            decrypt.f4893c[decrypt.f4892b[i].charCodeAt(0)] = i;
         }
     },
     a: function (bArr, i2, str) {
@@ -398,9 +398,8 @@ function base64ToUint8Array(base64) {
 }
 
 let $ = new Env('酷我纯净版')
-decrypt2.init()
+decrypt.init()
 let url = $request.url
-$.log('url:',url)
 if (url.indexOf('/user/vip') !== -1) {
     let body = $response.body
     let data = JSON.parse(body)
@@ -428,28 +427,27 @@ if (url.indexOf('/user/vip') !== -1) {
 if (url.indexOf('/mobi.s') !== -1) {
     const match = url.match(/[?&]q=([^&]*)/);
     let q = match ? match[1] : null;
-    $.log('q:',q)
     const encryptedData = base64ToUint8Array(q);
     const key = new TextEncoder().encode("ylzsxkwm");
+    // 解密请求的 q值
     let decryptedString;
     try {
         const decryptedData = decrypt.b1(encryptedData, key);
         let textDecoder = new TextDecoder('utf-8');
         decryptedString = textDecoder.decode(decryptedData);
-        $.log('解密结果:', decryptedString);
     } catch (error) {
         $.error('解密过程中出错:', error);
         $.done();
     }
     decryptedString.replace(/\+/g, "%2B");
+    // 替换部分请求参数
     const params = new URLSearchParams(decryptedString);
     params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
     params.set('user', 'C_APK_guanwang_12609069939969033731');
     //加密
     const decryptedData = new TextEncoder().encode(params.toString());
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
-    const newQ = decrypt2.a1(encryptedNewData,encryptedNewData.length).join('');
-    $.log('newQ:',newQ)
+    const newQ = encrypt.a1(encryptedNewData,encryptedNewData.length).join('');
     const request = new URL(url);
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
