@@ -396,7 +396,7 @@ function base64ToUint8Array(base64) {
 }
 
 let $ = new Env('酷我纯净版')
-decrypt.init()
+encrypt.init()
 let url = $request.url
 if (url.indexOf('/user/vip') !== -1) {
     let body = $response.body
