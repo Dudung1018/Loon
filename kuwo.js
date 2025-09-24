@@ -5,13 +5,13 @@
 #!date=2025-08-23
 
     [Script]
-# 会员
-会员 = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/user\/vip\?op=ui&uid=\d+&sid=\d+&signver=new$,requires-body=true,max-size=0,binary-body-mode=0, timeout=60, script-path="https://loon.dudung.cloudns.org/kuwo.js"
-# 播放
-播放 = type=http-request, pattern=^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q=, requires-body=true,max-size=0,binary-body-mode=0, timeout=60,script-path="https://loon.dudung.cloudns.org/kuwo.js"
+    http-response http://vip1.kuwo.cn/vip/v2/user/vip script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=会员
+    http-request ^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q= script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=播放
+
+
 
     [MITM]
-hostname = %APPEND% *.kuwo.cn
+hostname = *.kuwo.cn
 ****************/
 
 const decrypt = {
