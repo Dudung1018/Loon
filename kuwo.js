@@ -1,16 +1,14 @@
-/************
+/****************
 #!name=酷我纯净版
 #!desc=修改 vip
 #!author=Lonely-Lifer
 #!date=2025-08-23
 
-    [Script]
-    http-response http://vip1.kuwo.cn/vip/v2/user/vip script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=会员
-    http-request ^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q= script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=播放
+[Script]
+http-response http://vip1.kuwo.cn/vip/v2/user/vip script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=会员
+http-request ^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q= script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=播放
 
-
-
-    [MITM]
+[MITM]
 hostname = *.kuwo.cn
 ****************/
 
