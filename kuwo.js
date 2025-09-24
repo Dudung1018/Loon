@@ -301,19 +301,19 @@ const encrypt = {
     init() {
         let i2 = 0;
         for (let c = 'A'.charCodeAt(0); c <= 'Z'.charCodeAt(0); c++) {
-            decrypt.f4892b[i2++] = String.fromCharCode(c);
+            encrypt.f4892b[i2++] = String.fromCharCode(c);
         }
         for (let c = 'a'.charCodeAt(0); c <= 'z'.charCodeAt(0); c++) {
-            decrypt.f4892b[i2++] = String.fromCharCode(c);
+            encrypt.f4892b[i2++] = String.fromCharCode(c);
         }
         for (let c = '0'.charCodeAt(0); c <= '9'.charCodeAt(0); c++) {
-            decrypt.f4892b[i2++] = String.fromCharCode(c);
+            encrypt.f4892b[i2++] = String.fromCharCode(c);
         }
-        decrypt.f4892b[i2++] = '+';
-        decrypt.f4892b[i2++] = '/';
+        encrypt.f4892b[i2++] = '+';
+        encrypt.f4892b[i2++] = '/';
 
         for (let i = 0; i < 64; i++) {
-            decrypt.f4893c[decrypt.f4892b[i].charCodeAt(0)] = i;
+            encrypt.f4893c[encrypt.f4892b[i].charCodeAt(0)] = i;
         }
     },
     a: function (bArr, i2, str) {
@@ -364,15 +364,15 @@ const encrypt = {
             let i18 = i6 & 0x3F;
 
             let i19 = i12 + 1;
-            cArr[i12] = decrypt2.f4892b[i15];
+            cArr[i12] = encrypt.f4892b[i15];
             let i20 = i19 + 1;
-            cArr[i19] = decrypt2.f4892b[i16];
+            cArr[i19] = encrypt.f4892b[i16];
 
             let c2 = '=';
-            cArr[i20] = i20 < i10 ? decrypt2.f4892b[i17] : '=';
+            cArr[i20] = i20 < i10 ? encrypt.f4892b[i17] : '=';
             let i21 = i20 + 1;
             if (i21 < i10) {
-                c2 = decrypt2.f4892b[i18];
+                c2 = encrypt.f4892b[i18];
             }
             cArr[i21] = c2;
 
@@ -382,7 +382,7 @@ const encrypt = {
         return cArr;
     },
     a1: function(bArr,i2) {
-        return decrypt2.a(bArr, i2, null);
+        return encrypt.a(bArr, i2, null);
     }
 }
 function base64ToUint8Array(base64) {
