@@ -1,16 +1,16 @@
 /****************
-#!name=酷我纯净版
-#!desc=修改 vip
-#!author=Lonely-Lifer
-#!date=2025-08-23
+ #!name=酷我纯净版
+ #!desc=修改 vip
+ #!author=Lonely-Lifer
+ #!date=2025-08-23
 
-[Script]
-http-response http://vip1.kuwo.cn/vip/v2/user/vip script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=会员
-http-request ^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q= script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=播放
+ [Script]
+ http-response http://vip1.kuwo.cn/vip/v2/user/vip script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=会员
+ http-request ^http?:\/\/nmobi\.kuwo\.cn\/mobi\.s\?f=kuwo&q= script-path=https://loon.dudung.cloudns.org/kuwo.js, requires-body=true, timeout=60, tag=播放
 
-[MITM]
-hostname = *.kuwo.cn
-****************/
+ [MITM]
+ hostname = *.kuwo.cn
+ ****************/
 
 const decrypt = {
     f4894a: 'ylzsxkwm'.split('').map((c) => c.charCodeAt(0)),
@@ -24,7 +24,7 @@ const decrypt = {
         [15, 0, 9, 5, 6, 10, 12, 9, 8, 7, 2, 12, 3, 13, 5, 2, 1, 14, 7, 8, 11, 4, 0, 3, 14, 11, 13, 6, 4, 1, 10, 15, 3, 13, 12, 11, 15, 3, 6, 0, 4, 10, 1, 7, 8, 4, 11, 14, 13, 8, 0, 6, 2, 15, 9, 5, 7, 1, 10, 12, 14, 2, 5, 9],
         [10, 13, 1, 11, 6, 8, 11, 5, 9, 4, 12, 2, 15, 3, 2, 14, 0, 6, 13, 1, 3, 15, 4, 10, 14, 9, 7, 12, 5, 0, 8, 7, 13, 1, 2, 4, 3, 6, 12, 11, 0, 13, 5, 14, 6, 8, 15, 2, 7, 10, 8, 15, 4, 9, 11, 5, 9, 0, 14, 3, 10, 7, 1, 12],
         [7, 10, 1, 15, 0, 12, 11, 5, 14, 9, 8, 3, 9, 7, 4, 8, 13, 6, 2, 1, 6, 11, 12, 2, 3, 0, 5, 14, 10, 13, 15, 4, 13, 3, 4, 9, 6, 10, 1, 12, 11, 0, 2, 5, 0, 13, 14, 2, 8, 15, 7, 4, 15, 1, 10, 7, 5, 6, 12, 11, 3, 8, 9, 14],
-        [2, 4, 8, 15, 7, 10, 13, 6, 4, 1, 3, 12, 11, 7, 14, 0, 12, 2, 5, 9, 10, 13, 0, 3, 1, 11, 15, 5, 6, 8, 9, 14, 14, 11, 5, 6, 4, 1, 3, 10, 2, 12, 15, 0, 13, 2, 8, 5, 11, 8, 0, 15, 7, 14, 9, 4, 12, 7, 10, 9,1, 13, 6, 3],
+        [2, 4, 8, 15, 7, 10, 13, 6, 4, 1, 3, 12, 11, 7, 14, 0, 12, 2, 5, 9, 10, 13, 0, 3, 1, 11, 15, 5, 6, 8, 9, 14, 14, 11, 5, 6, 4, 1, 3, 10, 2, 12, 15, 0, 13, 2, 8, 5, 11, 8, 0, 15, 7, 14, 9, 4, 12, 7, 10, 9, 1, 13, 6, 3],
         [12, 9, 0, 7, 9, 2, 14, 1, 10, 15, 3, 4, 6, 12, 5, 11, 1, 14, 13, 0, 2, 8, 7, 13, 15, 5, 4, 10, 8, 3, 11, 6, 10, 4, 6, 11, 7, 9, 0, 6, 4, 2, 13, 1, 9, 15, 3, 8, 15, 3, 1, 14, 12, 5, 11, 0, 2, 12, 14, 7, 5, 10, 8, 13],
         [4, 1, 3, 10, 15, 12, 5, 0, 2, 11, 9, 6, 8, 7, 6, 9, 11, 4, 12, 15, 0, 3, 10, 5, 14, 13, 7, 8, 13, 14, 1, 2, 13, 6, 14, 9, 4, 1, 2, 14, 11, 13, 5, 0, 1, 10, 8, 3, 0, 11, 3, 5, 9, 4, 15, 2, 7, 8, 12, 15, 10, 7, 6, 12],
         [13, 7, 10, 0, 6, 9, 5, 15, 8, 4, 3, 10, 11, 14, 12, 5, 2, 11, 9, 6, 15, 12, 0, 3, 4, 1, 14, 13, 1, 2, 7, 8, 1, 2, 12, 15, 10, 4, 0, 3, 13, 14, 6, 9, 7, 8, 9, 6, 15, 1, 5, 12, 3, 10, 14, 5, 8, 7, 11, 0, 4, 13, 2, 11]
@@ -264,7 +264,7 @@ const decrypt = {
         return bArr3;
     }
     ,
-    b1:function (bArr,bArr2) {
+    b1: function (bArr, bArr2) {
         const length = bArr.length;
         const jArr = new Array(16).fill(BigInt(0));
         let j2 = BigInt(0);
@@ -294,97 +294,99 @@ const decrypt = {
     }
 
 }
-const encrypt = {
-    f4891a: 'mobile',
-    f4892b: new Array(64),
-    f4893c: new Array(128),
-    init() {
-        let i2 = 0;
-        for (let c = 'A'.charCodeAt(0); c <= 'Z'.charCodeAt(0); c++) {
-            encrypt.f4892b[i2++] = String.fromCharCode(c);
-        }
-        for (let c = 'a'.charCodeAt(0); c <= 'z'.charCodeAt(0); c++) {
-            encrypt.f4892b[i2++] = String.fromCharCode(c);
-        }
-        for (let c = '0'.charCodeAt(0); c <= '9'.charCodeAt(0); c++) {
-            encrypt.f4892b[i2++] = String.fromCharCode(c);
-        }
-        encrypt.f4892b[i2++] = '+';
-        encrypt.f4892b[i2++] = '/';
-
-        for (let i = 0; i < 64; i++) {
-            encrypt.f4893c[encrypt.f4892b[i].charCodeAt(0)] = i;
-        }
-    },
-    a: function (bArr, i2, str) {
-        // 如果 str 不为空，先做异或处理
-        if (str && str !== '') {
-            const bytes = Array.from(str).map(c => c.charCodeAt(0));
-            let i7 = 0;
-            for (let i8 = 0; i8 < bArr.length; i8 = i7) {
-                i7 = i8;
-                let i9 = 0;
-                while (i9 < bytes.length && i7 < bArr.length) {
-                    bArr[i7] = bArr[i7] ^ bytes[i9];
-                    i9++;
-                    i7++;
+const encrypt = (() => {
+    const config = {
+        f4891a: 'mobile',
+        f4892b: new Array(64),
+        f4893c: new Array(128),
+        a: function (bArr, i2, str) {
+            // 如果 str 不为空，先做异或处理
+            if (str && str !== '') {
+                const bytes = Array.from(str).map(c => c.charCodeAt(0));
+                let i7 = 0;
+                for (let i8 = 0; i8 < bArr.length; i8 = i7) {
+                    i7 = i8;
+                    let i9 = 0;
+                    while (i9 < bytes.length && i7 < bArr.length) {
+                        bArr[i7] = bArr[i7] ^ bytes[i9];
+                        i9++;
+                        i7++;
+                    }
                 }
             }
+
+            // 计算输出长度
+            const i10 = Math.floor(((i2 * 4) + 2) / 3);
+            const cArr = new Array(Math.ceil(i2 / 3) * 4);
+            let i11 = 0;
+            let i12 = 0;
+            while (i11 < i2) {
+                let i13 = i11 + 1;
+                let i14 = bArr[i11] & 0xFF;
+                let i3, i4;
+                if (i13 < i2) {
+                    i3 = i13 + 1;
+                    i4 = bArr[i13] & 0xFF;
+                } else {
+                    i3 = i13;
+                    i4 = 0;
+                }
+
+                let i5, i6;
+                if (i3 < i2) {
+                    i5 = i3 + 1;
+                    i6 = bArr[i3] & 0xFF;
+                } else {
+                    i5 = i3;
+                    i6 = 0;
+                }
+
+                let i15 = i14 >>> 2;
+                let i16 = ((i14 & 0x03) << 4) | (i4 >>> 4);
+                let i17 = ((i4 & 0x0F) << 2) | (i6 >>> 6);
+                let i18 = i6 & 0x3F;
+
+                let i19 = i12 + 1;
+                cArr[i12] = encrypt.f4892b[i15];
+                let i20 = i19 + 1;
+                cArr[i19] = encrypt.f4892b[i16];
+
+                let c2 = '=';
+                cArr[i20] = i20 < i10 ? encrypt.f4892b[i17] : '=';
+                let i21 = i20 + 1;
+                if (i21 < i10) {
+                    c2 = encrypt.f4892b[i18];
+                }
+                cArr[i21] = c2;
+
+                i12 = i21 + 1;
+                i11 = i5;
+            }
+            return cArr;
+        },
+        a1: function (bArr, i2) {
+            return encrypt.a(bArr, i2, null);
         }
-
-        // 计算输出长度
-        const i10 = Math.floor(((i2 * 4) + 2) / 3);
-        const cArr = new Array(Math.ceil(i2 / 3) * 4);
-        let i11 = 0;
-        let i12 = 0;
-        while (i11 < i2) {
-            let i13 = i11 + 1;
-            let i14 = bArr[i11] & 0xFF;
-            let i3, i4;
-            if (i13 < i2) {
-                i3 = i13 + 1;
-                i4 = bArr[i13] & 0xFF;
-            } else {
-                i3 = i13;
-                i4 = 0;
-            }
-
-            let i5, i6;
-            if (i3 < i2) {
-                i5 = i3 + 1;
-                i6 = bArr[i3] & 0xFF;
-            } else {
-                i5 = i3;
-                i6 = 0;
-            }
-
-            let i15 = i14 >>> 2;
-            let i16 = ((i14 & 0x03) << 4) | (i4 >>> 4);
-            let i17 = ((i4 & 0x0F) << 2) | (i6 >>> 6);
-            let i18 = i6 & 0x3F;
-
-            let i19 = i12 + 1;
-            cArr[i12] = encrypt.f4892b[i15];
-            let i20 = i19 + 1;
-            cArr[i19] = encrypt.f4892b[i16];
-
-            let c2 = '=';
-            cArr[i20] = i20 < i10 ? encrypt.f4892b[i17] : '=';
-            let i21 = i20 + 1;
-            if (i21 < i10) {
-                c2 = encrypt.f4892b[i18];
-            }
-            cArr[i21] = c2;
-
-            i12 = i21 + 1;
-            i11 = i5;
-        }
-        return cArr;
-    },
-    a1: function(bArr,i2) {
-        return encrypt.a(bArr, i2, null);
+    };
+    let i2 = 0;
+    for (let c = 'A'.charCodeAt(0); c <= 'Z'.charCodeAt(0); c++) {
+        config.f4892b[i2++] = String.fromCharCode(c);
     }
-}
+    for (let c = 'a'.charCodeAt(0); c <= 'z'.charCodeAt(0); c++) {
+        config.f4892b[i2++] = String.fromCharCode(c);
+    }
+    for (let c = '0'.charCodeAt(0); c <= '9'.charCodeAt(0); c++) {
+        config.f4892b[i2++] = String.fromCharCode(c);
+    }
+    config.f4892b[i2++] = '+';
+    config.f4892b[i2++] = '/';
+
+    for (let i = 0; i < 64; i++) {
+        config.f4893c[config.f4892b[i].charCodeAt(0)] = i;
+    }
+    return config;
+})();
+
 function base64ToUint8Array(base64) {
     const binary = atob(base64);
     const len = binary.length;
@@ -396,7 +398,6 @@ function base64ToUint8Array(base64) {
 }
 
 let $ = new Env('酷我纯净版')
-encrypt.init()
 let url = $request.url
 if (url.indexOf('/user/vip') !== -1) {
     let body = $response.body
@@ -445,7 +446,7 @@ if (url.indexOf('/mobi.s') !== -1) {
     //加密
     const decryptedData = new TextEncoder().encode(params.toString());
     const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
-    const newQ = encrypt.a1(encryptedNewData,encryptedNewData.length).join('');
+    const newQ = encrypt.a1(encryptedNewData, encryptedNewData.length).join('');
     const request = new URL(url);
     request.searchParams.set('q', newQ);
     const newUrl = request.toString();
