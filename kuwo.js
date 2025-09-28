@@ -12,65 +12,6 @@
  hostname = *.kuwo.cn
  ****************/
 
-
-
-
-let $ = new Env('酷我纯净版')
-let url = $request.url
-if (url.indexOf('/user/vip') !== -1) {
-    let body = $response.body
-    let data = JSON.parse(body)
-    let json = data.data
-    json.isNewUser = '1'
-    json.vipOverSeasExpire = 1767139200000;
-    json.isYearUser = '1'
-    json.vipExpire = 1767139200000;
-    json.vip3Expire = 1767139200000;
-    json.biedAlbum = 1767139200000;
-    json.vipmAutoPayUser = 1767139200000;
-    json.vipmExpire = 1767139200000;
-    json.vipLuxuryExpire = 1767139200000;
-    json.luxAutoPayUser = '1'
-    json.vipWatch1Expire = 1767139200000;
-    json.vipAdExpire = 1767139200000;
-    json.svipAutoPayUser = '1'
-    json.svipExpire = 1767139200000;
-    json.biedSong = 1767139200000;
-    json.vipAdAutoPayUser = '1'
-    json.experienceExpire = 1767139200000;
-    data.data = json
-    $.done({body: JSON.stringify(data)})
-}
-if (url.indexOf('/mobi.s') !== -1) {
-    const match = url.match(/[?&]q=([^&]*)/);
-    let q = match ? match[1] : null;
-    const encryptedData = base64ToUint8Array(q);
-    const key = new TextEncoder().encode("ylzsxkwm");
-    // 解密请求的 q值
-    let decryptedString;
-    try {
-        const decryptedData = decrypt.b1(encryptedData, key);
-        let textDecoder = new TextDecoder('utf-8');
-        decryptedString = textDecoder.decode(decryptedData);
-    } catch (error) {
-        $.error('解密过程中出错:', error);
-        $.done();
-    }
-    decryptedString.replace(/\+/g, "%2B");
-    // 替换部分请求参数
-    const params = new URLSearchParams(decryptedString);
-    params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
-    params.set('user', 'C_APK_guanwang_12609069939969033731');
-    //加密
-    const decryptedData = new TextEncoder().encode(params.toString());
-    const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
-    const newQ = encrypt.a1(encryptedNewData, encryptedNewData.length).join('');
-    const request = new URL(url);
-    request.searchParams.set('q', newQ);
-    const newUrl = request.toString();
-    $.done({url: newUrl});
-}
-
 const decrypt = {
     f4894a: 'ylzsxkwm'.split('').map((c) => c.charCodeAt(0)),
     f4895b: 'ylzsxkwm'.split('').map((c) => c.charCodeAt(0)).length,
@@ -445,6 +386,63 @@ const encrypt = (() => {
     }
     return config;
 })();
+
+let $ = new Env('酷我纯净版')
+let url = $request.url
+if (url.indexOf('/user/vip') !== -1) {
+    let body = $response.body
+    let data = JSON.parse(body)
+    let json = data.data
+    json.isNewUser = '1'
+    json.vipOverSeasExpire = 1767139200000;
+    json.isYearUser = '1'
+    json.vipExpire = 1767139200000;
+    json.vip3Expire = 1767139200000;
+    json.biedAlbum = 1767139200000;
+    json.vipmAutoPayUser = 1767139200000;
+    json.vipmExpire = 1767139200000;
+    json.vipLuxuryExpire = 1767139200000;
+    json.luxAutoPayUser = '1'
+    json.vipWatch1Expire = 1767139200000;
+    json.vipAdExpire = 1767139200000;
+    json.svipAutoPayUser = '1'
+    json.svipExpire = 1767139200000;
+    json.biedSong = 1767139200000;
+    json.vipAdAutoPayUser = '1'
+    json.experienceExpire = 1767139200000;
+    data.data = json
+    $.done({body: JSON.stringify(data)})
+}
+if (url.indexOf('/mobi.s') !== -1) {
+    const match = url.match(/[?&]q=([^&]*)/);
+    let q = match ? match[1] : null;
+    const encryptedData = base64ToUint8Array(q);
+    const key = new TextEncoder().encode("ylzsxkwm");
+    // 解密请求的 q值
+    let decryptedString;
+    try {
+        const decryptedData = decrypt.b1(encryptedData, key);
+        let textDecoder = new TextDecoder('utf-8');
+        decryptedString = textDecoder.decode(decryptedData);
+    } catch (error) {
+        $.error('解密过程中出错:', error);
+        $.done();
+    }
+    decryptedString.replace(/\+/g, "%2B");
+    // 替换部分请求参数
+    const params = new URLSearchParams(decryptedString);
+    params.set('source', 'kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk');
+    params.set('user', 'C_APK_guanwang_12609069939969033731');
+    //加密
+    const decryptedData = new TextEncoder().encode(params.toString());
+    const encryptedNewData = decrypt.a3(decryptedData, decryptedData.length, key, key.length);
+    const newQ = encrypt.a1(encryptedNewData, encryptedNewData.length).join('');
+    const request = new URL(url);
+    request.searchParams.set('q', newQ);
+    const newUrl = request.toString();
+    $.done({url: newUrl});
+}
+
 function Env(a, b) {
     var c = Math.floor;
     return new class {
