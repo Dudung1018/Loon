@@ -17,7 +17,7 @@ let url = $request.url
 if (url.indexOf('/user/vip') !== -1) {
     $.done({body: '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'});
 }
-if (url.indexOf('/music.pay') !== -1) {
+if (url.indexOf('/mobi\\.s') !== -1) {
     const body = $response.body;
     // 方法1：先解析再判断
     const data = JSON.parse(body);
@@ -34,22 +34,22 @@ if (url.indexOf('/music.pay') !== -1) {
         })
         .catch(err => console.error("请求出错:", err));
 }
-if(url.indexOf('/audi.tion') !== -1) {
-    let body = $response.body
-    const rid = body.songs[0].id
-    const url = `https://mobi.kuwo.cn/mobi.s?f=web&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&from=PC&type=convert_url_with_sign&br=128kmp3&rid=${rid}&&user=C_APK_guanwang_12609069939969033731`
-    fetch(url)
-        .then(res => res.json())   // 解析成 JSON
-        .then(data => {
-            const mp3Url = data.data.url
-            body.songs[0].url = mp3Url
-            body.songs[0].https = mp3Url
-            body.songs[0].car_url = mp3Url
-            body.songs[0].car_url_https = mp3Url
-            $.done({body: JSON.stringify(body)})
-        })
-        .catch(err => console.error("请求出错:", err));
-}
+// if(url.indexOf('/audi.tion') !== -1) {
+//     let body = $response.body
+//     const rid = body.songs[0].id
+//     const url = `https://mobi.kuwo.cn/mobi.s?f=web&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&from=PC&type=convert_url_with_sign&br=128kmp3&rid=${rid}&&user=C_APK_guanwang_12609069939969033731`
+//     fetch(url)
+//         .then(res => res.json())   // 解析成 JSON
+//         .then(data => {
+//             const mp3Url = data.data.url
+//             body.songs[0].url = mp3Url
+//             body.songs[0].https = mp3Url
+//             body.songs[0].car_url = mp3Url
+//             body.songs[0].car_url_https = mp3Url
+//             $.done({body: JSON.stringify(body)})
+//         })
+//         .catch(err => console.error("请求出错:", err));
+// }
 
 function Env(a, b) {
     var c = Math.floor;
