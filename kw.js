@@ -6,7 +6,7 @@
 
  [Script]
  http-response ^https?://vip1\.kuwo\.cn/vip/enc/user/vip\?(?=.*\buid=(\d+))(?=.*\bsid=(\d+))(?=.*\bdevid=(\d+)).*$ script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=会员
- http-response ^https?:\/\/(?:www\.)?musicpay\.kuwo\.cn\/music\.pay(?:\/)?(?:\?.*)?$ script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=播放
+ http-response ^https:\/\/anymatch\.kuwo\.cn\/mobi\.s\?f=kwxs&q=.* script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=播放
 
  [MITM]
  hostname = *.kuwo.cn
