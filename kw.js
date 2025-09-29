@@ -19,7 +19,9 @@ if (url.indexOf('/user/vip') !== -1) {
 }
 if (url.indexOf('/music.pay') !== -1) {
     const body = $response.body;
-    const rid = JSON.parse(body).songs[0].mp3rid || ''
+    // 方法1：先解析再判断
+    const data = JSON.parse(body);
+    const rid = data.songs && data.songs[0] ? data.songs[0].mp3rid || '' : '';
     if(!rid) {
         $.done({body: '{"timestamp":1759132924,"songs":[99999999],"result":"ok","errorcode":0,"errormsg":"MusicPay_OK"}' })
     }
