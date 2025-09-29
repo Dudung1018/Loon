@@ -24,6 +24,7 @@ if (url.indexOf('/music.pay') !== -1) {
     fetch(url)
         .then(res => res.json())   // 解析成 JSON
         .then(data => {
+            console.log(data.data)
             $.done({body: JSON.stringify(data.data)})
         })
         .catch(err => console.error("请求出错:", err));
