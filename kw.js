@@ -19,7 +19,10 @@ if (url.indexOf('/user/vip') !== -1) {
 }
 if (url.indexOf('/music.pay') !== -1) {
     const body = $response.body;
-    const rid = JSON.parse(body).songs[0].mp3rid
+    const rid = JSON.parse(body).songs[0].mp3rid || ''
+    if(!rid) {
+        $.done({body: '{"timestamp":1759132924,"songs":[99999999],"result":"ok","errorcode":0,"errormsg":"MusicPay_OK"}' })
+    }
     const url = `https://mobi.kuwo.cn/mobi.s?f=web&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&from=PC&type=convert_url_with_sign&br=128kmp3&rid=${rid}&&user=C_APK_guanwang_12609069939969033731`
     fetch(url)
         .then(res => res.json())   // 解析成 JSON
