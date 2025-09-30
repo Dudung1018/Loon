@@ -66,7 +66,7 @@ if (url.includes("/music.pay") && method == "POST") {
                 info: obj.songs[0]
             }
             data = JSON.stringify(obj)
-            $.done({data})
+            $.done({body:data})
         }
     })
 
@@ -74,7 +74,6 @@ if (url.includes("/music.pay") && method == "POST") {
 if (url.indexOf('/mobi.s') !== -1) {
     const rid = $persistentStore.read("rid")
     const br = $persistentStore.read("br")
-    console.log(br)
     const url = `https://mobi.kuwo.cn/mobi.s?f=web&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&from=PC&type=convert_url_with_sign&br=${br}&rid=${rid}&&user=C_APK_guanwang_12609069939969033731`
     fetch(url)
         .then(res => res.json())   // 解析成 JSON
