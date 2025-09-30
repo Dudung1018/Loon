@@ -53,6 +53,7 @@ if (url.includes("/music.pay") && method == "POST") {
         };
         body = JSON.stringify(obj);
     }
+    $.done({body: body})
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const url = `https://mobi.kuwo.cn/mobi.s?f=web&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&from=PC&type=convert_url_with_sign&br=128kmp3&rid=${rid}&&user=C_APK_guanwang_12609069939969033731`
