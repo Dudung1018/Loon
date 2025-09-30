@@ -28,15 +28,15 @@ if (url.includes("/music.pay") && method == "POST") {
             console.log("请求错误: " + error);
             $done({error: error});
         }
+        let obj = JSON.parse(data);
         if (data.includes("audio")) {
-            let obj = JSON.parse(data);
             obj.songs[0].audio.forEach((item) => (item.st = 0))
             let br = obj.songs[0].audio.find(item => item.quality === quality).br
             if(br===2000) br = br+'mflac'
             else br = br +'kmp3'
-            $persistentStore.write(obj.songs[0].id, "rid");
+            $persistentStore.write(obj.songs[0].id, "rid")
             $persistentStore.write(br,"br")
-            let tmp = obj.songs[0].audio[0].policy;
+            let tmp = obj.songs[0].audio[0].policy
             obj.user[0] = {
                 pid: obj.songs[0].audio[0].pid,
                 type: tmp,
@@ -61,10 +61,9 @@ if (url.includes("/music.pay") && method == "POST") {
                 period: 1000,
                 feetype: 0,
                 info: obj.songs[0]
-            };
-            data = JSON.stringify(obj);
+            }
         }
-        $.done({body: data})
+        $.done({body: JSON.stringify(obj)})
     })
 
 }
