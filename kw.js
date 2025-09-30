@@ -31,7 +31,7 @@ if (url.includes("/music.pay") && method == "POST") {
         if (data.includes("audio")) {
             let obj = JSON.parse(data);
             obj.songs[0].audio.forEach((item) => (item.st = 0))
-            let br = body.songs[0].audio.find(item => item.quality === quality).br
+            let br = obj.songs[0].audio.find(item => item.quality === quality).br
             if(br===20000) br = br+'mflac'
             else br = br +'kmp3'
             $persistentStore.write(obj.songs[0].id, "rid");
