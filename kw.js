@@ -32,6 +32,7 @@ if (url.includes("/music.pay") && method == "POST") {
             $done({error: error});
         }
         let body = JSON.parse(data);
+        console.log(body);
         let br = body.songs[0].audio.find(item => item.quality === quality).br
         if(br===2000) br =br+'mflac'
         else br = br +'kmp3'
