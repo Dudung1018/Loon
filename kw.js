@@ -63,6 +63,7 @@ if (url.includes("/music.pay") && method == "POST") {
                 info: obj.songs[0]
             }
         }
+        console.log(obj)
         $.done({body: JSON.stringify(obj)})
     })
 
