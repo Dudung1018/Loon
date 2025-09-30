@@ -32,22 +32,6 @@ if (url.indexOf('/mobi.s') !== -1) {
         })
         .catch(err => console.error("请求出错:", err));
 }
-// if(url.indexOf('/audi.tion') !== -1) {
-//     let body = $response.body
-//     const rid = body.songs[0].id
-//     const url = `https://mobi.kuwo.cn/mobi.s?f=web&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&from=PC&type=convert_url_with_sign&br=128kmp3&rid=${rid}&&user=C_APK_guanwang_12609069939969033731`
-//     fetch(url)
-//         .then(res => res.json())   // 解析成 JSON
-//         .then(data => {
-//             const mp3Url = data.data.url
-//             body.songs[0].url = mp3Url
-//             body.songs[0].https = mp3Url
-//             body.songs[0].car_url = mp3Url
-//             body.songs[0].car_url_https = mp3Url
-//             $.done({body: JSON.stringify(body)})
-//         })
-//         .catch(err => console.error("请求出错:", err));
-// }
 
 function Env(a, b) {
     var c = Math.floor;

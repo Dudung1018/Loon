@@ -10,7 +10,7 @@ const decrypt = {
         [15, 0, 9, 5, 6, 10, 12, 9, 8, 7, 2, 12, 3, 13, 5, 2, 1, 14, 7, 8, 11, 4, 0, 3, 14, 11, 13, 6, 4, 1, 10, 15, 3, 13, 12, 11, 15, 3, 6, 0, 4, 10, 1, 7, 8, 4, 11, 14, 13, 8, 0, 6, 2, 15, 9, 5, 7, 1, 10, 12, 14, 2, 5, 9],
         [10, 13, 1, 11, 6, 8, 11, 5, 9, 4, 12, 2, 15, 3, 2, 14, 0, 6, 13, 1, 3, 15, 4, 10, 14, 9, 7, 12, 5, 0, 8, 7, 13, 1, 2, 4, 3, 6, 12, 11, 0, 13, 5, 14, 6, 8, 15, 2, 7, 10, 8, 15, 4, 9, 11, 5, 9, 0, 14, 3, 10, 7, 1, 12],
         [7, 10, 1, 15, 0, 12, 11, 5, 14, 9, 8, 3, 9, 7, 4, 8, 13, 6, 2, 1, 6, 11, 12, 2, 3, 0, 5, 14, 10, 13, 15, 4, 13, 3, 4, 9, 6, 10, 1, 12, 11, 0, 2, 5, 0, 13, 14, 2, 8, 15, 7, 4, 15, 1, 10, 7, 5, 6, 12, 11, 3, 8, 9, 14],
-        [2, 4, 8, 15, 7, 10, 13, 6, 4, 1, 3, 12, 11, 7, 14, 0, 12, 2, 5, 9, 10, 13, 0, 3, 1, 11, 15, 5, 6, 8, 9, 14, 14, 11, 5, 6, 4, 1, 3, 10, 2, 12, 15, 0, 13, 2, 8, 5, 11, 8, 0, 15, 7, 14, 9, 4, 12, 7, 10, 9,1, 13, 6, 3],
+        [2, 4, 8, 15, 7, 10, 13, 6, 4, 1, 3, 12, 11, 7, 14, 0, 12, 2, 5, 9, 10, 13, 0, 3, 1, 11, 15, 5, 6, 8, 9, 14, 14, 11, 5, 6, 4, 1, 3, 10, 2, 12, 15, 0, 13, 2, 8, 5, 11, 8, 0, 15, 7, 14, 9, 4, 12, 7, 10, 9, 1, 13, 6, 3],
         [12, 9, 0, 7, 9, 2, 14, 1, 10, 15, 3, 4, 6, 12, 5, 11, 1, 14, 13, 0, 2, 8, 7, 13, 15, 5, 4, 10, 8, 3, 11, 6, 10, 4, 6, 11, 7, 9, 0, 6, 4, 2, 13, 1, 9, 15, 3, 8, 15, 3, 1, 14, 12, 5, 11, 0, 2, 12, 14, 7, 5, 10, 8, 13],
         [4, 1, 3, 10, 15, 12, 5, 0, 2, 11, 9, 6, 8, 7, 6, 9, 11, 4, 12, 15, 0, 3, 10, 5, 14, 13, 7, 8, 13, 14, 1, 2, 13, 6, 14, 9, 4, 1, 2, 14, 11, 13, 5, 0, 1, 10, 8, 3, 0, 11, 3, 5, 9, 4, 15, 2, 7, 8, 12, 15, 10, 7, 6, 12],
         [13, 7, 10, 0, 6, 9, 5, 15, 8, 4, 3, 10, 11, 14, 12, 5, 2, 11, 9, 6, 15, 12, 0, 3, 4, 1, 14, 13, 1, 2, 7, 8, 1, 2, 12, 15, 10, 4, 0, 3, 13, 14, 6, 9, 7, 8, 9, 6, 15, 1, 5, 12, 3, 10, 14, 5, 8, 7, 11, 0, 4, 13, 2, 11]
@@ -250,157 +250,173 @@ const decrypt = {
         return bArr3;
     }
     ,
-    b1:function (bArr,bArr2) {
-            const length = bArr.length;
-            const jArr = new Array(16).fill(BigInt(0));
-            let j2 = BigInt(0);
-            for (let i2 = 0; i2 < 8; i2++) {
-                j2 |= BigInt(bArr2[i2]) << BigInt(i2 * 8);
+    b1: function (bArr, bArr2) {
+        const length = bArr.length;
+        const jArr = new Array(16).fill(BigInt(0));
+        let j2 = BigInt(0);
+        for (let i2 = 0; i2 < 8; i2++) {
+            j2 |= BigInt(bArr2[i2]) << BigInt(i2 * 8);
+        }
+        decrypt.a1(j2, jArr, 1);
+        const i4 = Math.floor(length / 8);
+        const jArr2 = new Array(i4).fill(BigInt(0));
+        for (let i5 = 0; i5 < i4; i5++) {
+            for (let i6 = 0; i6 < 8; i6++) {
+                jArr2[i5] |= BigInt(bArr[(i5 * 8) + i6] & 255) << BigInt(i6 * 8);
             }
-            decrypt.a1(j2, jArr, 1);
-            const i4 = Math.floor(length / 8);
-            const jArr2 = new Array(i4).fill(BigInt(0));
-            for (let i5 = 0; i5 < i4; i5++) {
-                for (let i6 = 0; i6 < 8; i6++) {
-                    jArr2[i5] |= BigInt(bArr[(i5 * 8) + i6] & 255) << BigInt(i6 * 8);
-                }
+        }
+        const jArr3 = new Array(i4);
+        for (let i7 = 0; i7 < i4; i7++) {
+            jArr3[i7] = decrypt.a2(jArr, jArr2[i7]);
+        }
+        const bArr3 = new Uint8Array(i4 * 8);
+        for (let i8 = 0; i8 < i4; i8++) {
+            for (let i9 = 0; i9 < 8; i9++) {
+                bArr3[(i8 * 8) + i9] = Number(BigInt(255) & (jArr3[i8] >> BigInt(i9 * 8)));
             }
-            const jArr3 = new Array(i4);
-            for (let i7 = 0; i7 < i4; i7++) {
-                jArr3[i7] = decrypt.a2(jArr, jArr2[i7]);
-            }
-            const bArr3 = new Uint8Array(i4 * 8);
-            for (let i8 = 0; i8 < i4; i8++) {
-                for (let i9 = 0; i9 < 8; i9++) {
-                    bArr3[(i8 * 8) + i9] = Number(BigInt(255) & (jArr3[i8] >> BigInt(i9 * 8)));
-                }
-            }
-            return bArr3;
+        }
+        return bArr3;
 
     }
 
 }
-const decrypt2 = {
-    f4891a: 'mobile',
-    f4892b: new Array(64),
-    f4893c: new Array(128),
-    init() {
-        let i2 = 0;
-        for (let c = 'A'.charCodeAt(0); c <= 'Z'.charCodeAt(0); c++) {
-            decrypt2.f4892b[i2++] = String.fromCharCode(c);
-        }
-        for (let c = 'a'.charCodeAt(0); c <= 'z'.charCodeAt(0); c++) {
-            decrypt2.f4892b[i2++] = String.fromCharCode(c);
-        }
-        for (let c = '0'.charCodeAt(0); c <= '9'.charCodeAt(0); c++) {
-            decrypt2.f4892b[i2++] = String.fromCharCode(c);
-        }
-        decrypt2.f4892b[i2++] = '+';
-        decrypt2.f4892b[i2++] = '/';
-
-        for (let i = 0; i < 64; i++) {
-            decrypt2.f4893c[decrypt2.f4892b[i].charCodeAt(0)] = i;
-        }
-    },
-    a: function (bArr, i2, str) {
-        // 如果 str 不为空，先做异或处理
-        if (str && str !== '') {
-            const bytes = Array.from(str).map(c => c.charCodeAt(0));
-            let i7 = 0;
-            for (let i8 = 0; i8 < bArr.length; i8 = i7) {
-                i7 = i8;
-                let i9 = 0;
-                while (i9 < bytes.length && i7 < bArr.length) {
-                    bArr[i7] = bArr[i7] ^ bytes[i9];
-                    i9++;
-                    i7++;
+const decrypt2 = (() => {
+    const obj = {
+            f4891a: 'mobile',
+            f4892b: new Array(64),
+            f4893c: new Array(128),
+            a: function (bArr, i2, str) {
+                // 如果 str 不为空，先做异或处理
+                if (str && str !== '') {
+                    const bytes = Array.from(str).map(c => c.charCodeAt(0));
+                    let i7 = 0;
+                    for (let i8 = 0; i8 < bArr.length; i8 = i7) {
+                        i7 = i8;
+                        let i9 = 0;
+                        while (i9 < bytes.length && i7 < bArr.length) {
+                            bArr[i7] = bArr[i7] ^ bytes[i9];
+                            i9++;
+                            i7++;
+                        }
+                    }
                 }
+
+                // 计算输出长度
+                const i10 = Math.floor(((i2 * 4) + 2) / 3);
+                const cArr = new Array(Math.ceil(i2 / 3) * 4);
+                let i11 = 0;
+                let i12 = 0;
+                while (i11 < i2) {
+                    let i13 = i11 + 1;
+                    let i14 = bArr[i11] & 0xFF;
+                    let i3, i4;
+                    if (i13 < i2) {
+                        i3 = i13 + 1;
+                        i4 = bArr[i13] & 0xFF;
+                    } else {
+                        i3 = i13;
+                        i4 = 0;
+                    }
+
+                    let i5, i6;
+                    if (i3 < i2) {
+                        i5 = i3 + 1;
+                        i6 = bArr[i3] & 0xFF;
+                    } else {
+                        i5 = i3;
+                        i6 = 0;
+                    }
+
+                    let i15 = i14 >>> 2;
+                    let i16 = ((i14 & 0x03) << 4) | (i4 >>> 4);
+                    let i17 = ((i4 & 0x0F) << 2) | (i6 >>> 6);
+                    let i18 = i6 & 0x3F;
+
+                    let i19 = i12 + 1;
+                    cArr[i12] = decrypt2.f4892b[i15];
+                    let i20 = i19 + 1;
+                    cArr[i19] = decrypt2.f4892b[i16];
+
+                    let c2 = '=';
+                    cArr[i20] = i20 < i10 ? decrypt2.f4892b[i17] : '=';
+                    let i21 = i20 + 1;
+                    if (i21 < i10) {
+                        c2 = decrypt2.f4892b[i18];
+                    }
+                    cArr[i21] = c2;
+
+                    i12 = i21 + 1;
+                    i11 = i5;
+                }
+                return cArr;
+            },
+            a1: function (bArr, i2) {
+                return decrypt2.a(bArr, i2, null);
             }
         }
-
-        // 计算输出长度
-        const i10 = Math.floor(((i2 * 4) + 2) / 3);
-        const cArr = new Array(Math.ceil(i2 / 3) * 4);
-        let i11 = 0;
-        let i12 = 0;
-        while (i11 < i2) {
-            let i13 = i11 + 1;
-            let i14 = bArr[i11] & 0xFF;
-            let i3, i4;
-            if (i13 < i2) {
-                i3 = i13 + 1;
-                i4 = bArr[i13] & 0xFF;
-            } else {
-                i3 = i13;
-                i4 = 0;
-            }
-
-            let i5, i6;
-            if (i3 < i2) {
-                i5 = i3 + 1;
-                i6 = bArr[i3] & 0xFF;
-            } else {
-                i5 = i3;
-                i6 = 0;
-            }
-
-            let i15 = i14 >>> 2;
-            let i16 = ((i14 & 0x03) << 4) | (i4 >>> 4);
-            let i17 = ((i4 & 0x0F) << 2) | (i6 >>> 6);
-            let i18 = i6 & 0x3F;
-
-            let i19 = i12 + 1;
-            cArr[i12] = decrypt2.f4892b[i15];
-            let i20 = i19 + 1;
-            cArr[i19] = decrypt2.f4892b[i16];
-
-            let c2 = '=';
-            cArr[i20] = i20 < i10 ? decrypt2.f4892b[i17] : '=';
-            let i21 = i20 + 1;
-            if (i21 < i10) {
-                c2 = decrypt2.f4892b[i18];
-            }
-            cArr[i21] = c2;
-
-            i12 = i21 + 1;
-            i11 = i5;
-        }
-        return cArr;
-    },
-    a1: function(bArr,i2) {
-        return decrypt2.a(bArr, i2, null);
+    let i2 = 0;
+    for (let c = 'A'.charCodeAt(0); c <= 'Z'.charCodeAt(0); c++) {
+        obj.f4892b[i2++] = String.fromCharCode(c);
     }
-}
+    for (let c = 'a'.charCodeAt(0); c <= 'z'.charCodeAt(0); c++) {
+        obj.f4892b[i2++] = String.fromCharCode(c);
+    }
+    for (let c = '0'.charCodeAt(0); c <= '9'.charCodeAt(0); c++) {
+        obj.f4892b[i2++] = String.fromCharCode(c);
+    }
+    obj.f4892b[i2++] = '+';
+    obj.f4892b[i2++] = '/';
+    for (let i = 0; i < 64; i++) {
+        obj.f4893c[obj.f4892b[i].charCodeAt(0)] = i;
+    }
+    return obj;
+})()
+
 
 function base64ToUint8Array(base64) {
-    const binary = atob(base64);
-    const len = binary.length;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-        bytes[i] = binary.charCodeAt(i);
+    // 把 Base64URL 替换成标准 Base64
+    base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
+    // 补齐 Base64 长度到 4 的倍数
+    while (base64.length % 4) {
+        base64 += '=';
     }
-    return bytes;
+    let binaryString;
+    if (typeof Buffer !== 'undefined') {
+        // Node.js 环境
+        return new Uint8Array(Buffer.from(base64, 'base64'));
+    } else if (typeof atob !== 'undefined') {
+        // 浏览器环境
+        binaryString = atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes;
+    } else {
+        throw new Error('No base64 decoder available');
+    }
 }
-const s = "user=00693be4e9c94718a5ea6d7353960d8e&idfa=&uuid=00693be4e9c94718a5ea6d7353960d8e&idfv=DF335A4E-93B4-4FF5-9EFE-1CAA031C580D&prod=kwplayersimple_ip_1.0.2.0&source=kwplayersimple_ip_1.0.2.0_TJ.ipa&corp=kuwo&plat=ip&tmeapp=1&newver=3&prod_from=kwplayersimple&uid=2790887477&loginUid=140121405&loginSid=973503578&locationid=1&province=&city=&notrace=0&corp=kuwo&type=convert_url2&network=WIFI&format=mp3|aac|flac|ape&quality=highquality&mode=audition&rid=498973097&br=128kmp3&sig=&priority=bitrate&p2p=1&flac_ape=1";
+
+const s = "user=C_APK_guanwang_12609069939969033731&idfa=&uuid=C_APK_guanwang_12609069939969033731&idfv=B66CEFF2-3CF9-518F-B721-324FE189CF4F&prod=kwplayer_ip_11.3.8.0&source=kwplayercar_ar_6.0.0.9_B_jiakong_vh.apk&corp=kuwo&plat=ip&tmeapp=1&newver=3&q36=f7a4c912f86c648b1373762920001de1950c&uid=2785132906&loginUid=629515115&loginSid=1831614303&locationid=1&province=&city=&notrace=0&allpay=0&type=lyric&songname=%e6%bc%82%e6%b4%8b%e8%bf%87%e6%b5%b7%e6%9d%a5%e7%9c%8b%e4%bd%a0&artist=%e5%8d%8a%e5%90%a8%e5%85%84%e5%bc%9f&req=2&encode=utf8&lrcx=1&rid=310256859";
 const first = "ylzsxkwm";
-decrypt2.init();
 const encryptedData = new Uint8Array(Buffer.from(s));
 const result = decrypt.a3(encryptedData, encryptedData.length, new Uint8Array(Buffer.from('ylzsxkwm')), new Uint8Array(Buffer.from('ylzsxkwm')).length);
 // const result1 = new TextDecoder().decode(decrypt2.a1(result,result.length));
 // 假设 b.a(a2, a2.length) 返回一个 JS 字符数组
-const charArray = decrypt2.a1(result,result.length).join('');
+const charArray = decrypt2.a1(result, result.length).join('');
 console.log(charArray)
 // 1. 准备需要解密的数据和密钥
-const decryptedData = base64ToUint8Array('SDKKpI8vPfYgGOuiJY59OesTy+mqaQKYFac251bPuBRM0u1UzRsvg3cndng/pnpXwfK1+bWJuH/XufBCamZJv1kW0eCgeZ8NuNLz2kliXB0AQM2vcl3/38ptfRS7yTeKIbPxc6Y5gUqt2Es4PAW+sp9YaYDz+U/a7jFUpS1FbxeJSSV+PGg2fu4xVKUtRW8XrdhLODwFvrJF1KntJ2IIMzew3dwQ+/7VaY24ScDtD8B3Y/WSbNmsFK3YSzg8Bb6yYm3YFXh71ds2G/B0YeI7Y63YSzg8Bb6yP62/Cqer1AkPrhKu/');
+const decryptedData = base64ToUint8Array('gtsxc/iG/WylGIloJ2ZePNixA2g+BXC9rFFyLRBFEYqC5vxVoEeN9MxyVMdP9nezWAGUruFcVSqbeW2Ycf9te0/KIc027ycIgD9c7+RSJPVqK5R1/heIHwAFntXz6+qu1xxWqR+be56qe/KRT80qRsH8JGXPSNPywrlYEpONrhCof+t9Xph3HnZFHtmgcOzCMQORCw4Mirs+1PmPar+GT8roDzhYql/MRZwcQ0yYtP1Hy60DQcVRy5TCTF5z1VrkJuTk5oavr4kpYGen+vSUAg==');
 
 // 2. 准备密钥
 const key = new Uint8Array(Buffer.from('ylzsxkwm'));//[121, 108, 122, 115, 120, 107, 119, 109]
 
 // 3. 调用解密和加密函数
-    const textDecoder = new TextDecoder('utf-8');
+const textDecoder = new TextDecoder('utf-8');
 
-    // 解密
-    const decryptedDataWithPadding = decrypt.b1(decryptedData, key);
+// 解密
+const decryptedDataWithPadding = decrypt.b1(decryptedData, key);
 
-    const decryptedString = textDecoder.decode(decryptedDataWithPadding);
-    console.log(decryptedString);  // 默认 utf-8)
+const decryptedString = textDecoder.decode(decryptedDataWithPadding);
+console.log(decryptedString);  // 默认 utf-8)
