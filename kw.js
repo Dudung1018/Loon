@@ -17,6 +17,7 @@ let $ = new Env('酷我标准版')
 let url = $request.url
 const method = $request.method
 const type = $script.type
+console.log(type)
 let body;
 if(type === 'http-request' || type === 'HTTP-REQUEST') body = $request.body
 else body = $response.body
