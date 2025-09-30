@@ -24,7 +24,7 @@ if (url.includes("/music.pay") && method == "POST") {
     if (body.includes("audio")) {
         let obj = JSON.parse(body);
         obj.songs[0].audio.forEach((item) => (item.st = 0));
-        rid =body.songs[0].id
+        rid =obj.songs[0].id
         let tmp = obj.songs[0].audio[0].policy;
         obj.user[0] = {
             pid: obj.songs[0].audio[0].pid,
