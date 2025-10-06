@@ -65,8 +65,8 @@ if (url.includes("/music.pay") && method == "POST") {
                 feetype: 0,
                 info: obj.songs[0]
             }
+            $.done(obj)
         }
-        $.done(data)
     })
 }
 if (url.indexOf('/mobi.s') !== -1) {
