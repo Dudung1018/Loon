@@ -65,10 +65,10 @@ if (url.includes("/music.pay") && method == "POST") {
                 feetype: 0,
                 info: obj.songs[0]
             }
-            body = JSON.stringify(obj)
+            data = JSON.stringify(obj)
         }
-        console.log(body)
-        $.done({body:body})
+        console.log(data)
+        $.done({response})
     })
 }
 if (url.indexOf('/mobi.s') !== -1) {
