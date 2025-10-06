@@ -65,11 +65,11 @@ if (url.includes("/music.pay") && method == "POST") {
                 feetype: 0,
                 info: obj.songs[0]
             }
-            body = JSON.stringify(obj)
-
+            data = JSON.stringify(obj)
         }
     })
-    $.done({body:body})
+    console.log(data)
+    $.done({body:data})
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const rid = $persistentStore.read("rid")
@@ -85,7 +85,7 @@ if (url.indexOf('/mobi.s') !== -1) {
 }
 
 
-    function Env(a, b) {
+function Env(a, b) {
         var c = Math.floor;
         return new class {
             constructor(a, b) {
