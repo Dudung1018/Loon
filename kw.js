@@ -67,8 +67,7 @@ if (url.includes("/music.pay") && method == "POST") {
             }
             data = JSON.stringify(obj)
         }
-        console.log(data)
-        $.done({response})
+        $.done({data})
     })
 }
 if (url.indexOf('/mobi.s') !== -1) {
