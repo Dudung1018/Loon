@@ -6,7 +6,7 @@
 
  [Script]
  http-response ^https?://vip1\.kuwo\.cn/vip/enc/user/vip\?(?=.*\buid=(\d+))(?=.*\bsid=(\d+))(?=.*\bdevid=(\d+)).*$ script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=会员
- http-request ^https?://musicpay\.kuwo\.cn/music\.pay\?newver=\d+$ script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=播放1
+ http-request  ^https?://musicpay\.kuwo\.cn/music\.pay\?newver=\d+$ script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=播放1
  http-response ^https:\/\/anymatch\.kuwo\.cn\/mobi\.s\?f=kwxs&q=.* script-path=https://loon.dudung.cloudns.org/kw.js, requires-body=true, timeout=60, tag=播放2
 
  [MITM]
@@ -66,10 +66,10 @@ if (url.includes("/music.pay") && method == "POST") {
                 info: obj.songs[0]
             }
             body = JSON.stringify(obj)
-            $.done({body:body})
-        }
-    })
 
+        }
+        $.done({body:body})
+    })
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const rid = $persistentStore.read("rid")
