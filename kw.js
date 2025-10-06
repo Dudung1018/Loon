@@ -65,11 +65,11 @@ if (url.includes("/music.pay") && method == "POST") {
                 feetype: 0,
                 info: obj.songs[0]
             }
-            data = JSON.stringify(obj)
+            body = JSON.stringify(obj)
         }
     })
-    console.log(data)
-    $.done({body:data})
+    console.log(body)
+    $.done({body:body})
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const rid = $persistentStore.read("rid")
