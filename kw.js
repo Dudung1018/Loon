@@ -35,7 +35,7 @@ if (url.includes("/music.pay") && method == "POST") {
             let obj = JSON.parse(data);
             obj.songs[0].audio.forEach((item) => (item.st = 0))
             let br = obj.songs[0].audio.find(item => item.quality === quality).br
-            if(br===20000) br =br+'mflac'
+            if(br===20000) br = br+'mflac'
             else br = br +'kmp3'
             $persistentStore.write(obj.songs[0].id, "rid");
             $persistentStore.write(br,"br")
@@ -65,9 +65,11 @@ if (url.includes("/music.pay") && method == "POST") {
                 feetype: 0,
                 info: obj.songs[0]
             }
-            $.done(obj)
+            body = JSON.stringify(obj);
         }
     })
+    console.log(body)
+    $.done({response:{body}})
 }
 if (url.indexOf('/mobi.s') !== -1) {
     const rid = $persistentStore.read("rid")
