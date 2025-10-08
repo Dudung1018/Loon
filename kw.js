@@ -35,9 +35,8 @@ if (url.includes("/music.pay") && method == "POST") {
             let br = obj.songs[0].audio.find(item => item.quality === quality)&&
                 obj.songs[0].audio.find(item => item.quality === quality).br || 320
             if(br >= 2000) br = '20000mflac'
-            else if(br === 192) br = '320kmp3'
-            else if(br<=128) br = '128kmp3'
-            else br = br + 'kmp3'
+            else if(br >128) br = '320kmp3'
+            else  br = '128kmp3'
             $persistentStore.write(obj.songs[0].id, "rid");
             $persistentStore.write(br,"br")
             let tmp = obj.songs[0].audio[0].policy
