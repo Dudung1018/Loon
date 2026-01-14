@@ -7,9 +7,9 @@
 ^https?:\/\/[^\/]+\/api\/movie\/ShopProduct data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Script]
-pear = type=http-request, pattern=^https?:\/\/[^\/]+\/api\/(movie\/(LikeUserLikeMovie|DetailInfo)|anime\/DetailRecommend)\/, script-path=https://loon.dudung.cloudns.org/pear.js, argument={{{player}}},timeout=60
+pear = type=http-request, pattern=^https?:\/\/[^\/]+\/api\/(movie\/(LikeUserLikeMovie|DetailInfo)|anime\/DetailRecommend)\/, script-path=https://loon.dudung.cloudns.org/pear.js, argument="{{{player}}}",timeout=60
 
-pear = type=http-response, pattern=^https?:\/\/[^\/]+\/api\/(account\/(IndexDetail|IsVip)|cartoon\/VipInfo), script-path=https://loon.dudung.cloudns.org/pear.js, argument={{{player}}},requires-body=true, max-size=-1, timeout=60
+pear = type=http-response, pattern=^https?:\/\/[^\/]+\/api\/(account\/(IndexDetail|IsVip)|cartoon\/VipInfo), script-path=https://loon.dudung.cloudns.org/pear.js, argument="{{{player}}}",requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% *.baidu.com2.club, *.pearkin.com, *.pearhot.com
