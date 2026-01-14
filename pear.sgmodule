@@ -1,6 +1,6 @@
 #!name=pear
 #!desc=pear.sgmodule by 老baby的pear.js
-#!arguments = player:senplyer
+#!arguments = player:senplayer
 #!arguments-desc = player: 自选播放器(支持x-callback-url/play?url=格式)
 
 [Map Local]
