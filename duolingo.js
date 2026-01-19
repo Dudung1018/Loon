@@ -6,10 +6,10 @@
 #!date = 2026-01-19
 
 [Script]
-duolingo = type=http-response,
-pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\?fields=subscriberLevel,script-path=https://loon.dudung.cloudns.org/duolingo.js, requires-body=true, timeout=60, tag=订购等级
-duolingo = type=http-response,pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\/available-features.*$ script-path=https://loon.dudung.cloudns.org/duolingo.js, requires-body=true, timeout=60, tag=订购配置
-duolingo = type=http-response,pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d{1,2}-\d{1,2}\/batch script-path=https://loon.dudung.cloudns.org/duolingo.js, requires-body=true, timeout=60, tag=订购信息
+订购等级 = type=http-response,
+pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\?fields=subscriberLevel,script-path=https://loon.dudung.cloudns.org/duolingo.js, requires-body=true, timeout=60
+订购配置 = type=http-response,pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\/available-features.*$,script-path=https://loon.dudung.cloudns.org/duolingo.js, requires-body=true, timeout=60
+订购信息 = type=http-response,pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d{1,2}-\d{1,2}\/batch,script-path=https://loon.dudung.cloudns.org/duolingo.js, requires-body=true, timeout=60
 ---------------/
 const $ = new Env('多邻国')
 let url = $request.url
